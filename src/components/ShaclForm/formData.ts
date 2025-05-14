@@ -117,9 +117,18 @@ function createQuads(
           extraQuads.push($rdf.quad(value, RDF('type'), $rdf.namedNode(field.class), null))
         }
 
+        // $rdf.quad() converts input values to Literal with auto-detected datatype.
+        // However, we want the Literal.datatype to match field.datatype.
+        // By creating the Literal ourselves, we can override the datatype,
+        // and it won't be modified by $rdf.quad().
         let wrappedValue = value
         if (hasValue && field && field.datatype) {
-          wrappedValue = $rdf.literal(value, field.datatype)
+          // Create Literal from value so we can override the datatype.
+          // Note that fromValue() auto-detects the datatype and converts JS Date values to UTC,
+          // using a custom iso 8601 compliant string representation YYYY-MM-DDTHH:MM:SSZ
+          wrappedValue = $rdf.Literal.fromValue(value)
+          // Override auto-detected datatype
+          wrappedValue.datatype.value = field.datatype
         }
 
         return hasValue
