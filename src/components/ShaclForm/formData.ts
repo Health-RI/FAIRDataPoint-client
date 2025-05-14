@@ -1,6 +1,6 @@
 import * as $rdf from 'rdflib'
 import _ from 'lodash'
-import { PREFIXES, RDF, XSD } from '@/rdf/namespaces'
+import { PREFIXES, RDF } from '@/rdf/namespaces'
 import { FormShape } from '@/components/ShaclForm/Parser/SHACLFormParser'
 import fieldUtils from '@/components/ShaclForm/fieldUtils'
 import valueUtils from '@/components/ShaclForm/valueUtils'
