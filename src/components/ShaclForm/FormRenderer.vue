@@ -189,7 +189,6 @@ export default defineComponent({
       if (_.has(this.validationReport, subject)) {
         return this.humanReadableError(field, this.validationReport[subject][field.path])
       }
-
       return null
     },
     getLocalError(field) {

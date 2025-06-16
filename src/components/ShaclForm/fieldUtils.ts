@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { SHACL, XSD } from '@/rdf/namespaces'
+import { DASH, SHACL, XSD } from '@/rdf/namespaces'
 import rdfUtils from '@/rdf/utils'
 import { FormField } from '@/components/ShaclForm/Parser/SHACLFormParser'
 
@@ -46,6 +46,10 @@ function isRequired(field: FormField): boolean {
 function isOptionalNode(field: FormField): boolean {
   const minCount = field.minCount ?? 0
   return field.nodeShape !== null && minCount === 0 && field.maxCount === 1
+}
+
+function isOptionalBlankNode(field: FormField): boolean {
+  return field.editor === DASH('BlankNodeEditor').value && !field.minCount && field.maxCount === 1
 }
 
 function isBoolean(field: FormField): boolean {
