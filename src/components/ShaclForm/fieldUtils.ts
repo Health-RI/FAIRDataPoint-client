@@ -33,6 +33,10 @@ function isRequired(field: FormField): boolean {
   return field.minCount > 0
 }
 
+function isOptionalNode(field: FormField): boolean {
+  return field.nodeShape && !field.minCount && field.maxCount === 1
+}
+
 function isBoolean(field: FormField): boolean {
   return field.datatype === XSD('boolean').value
 }
@@ -61,6 +65,7 @@ export default {
   isIRI,
   isList,
   isLiteral,
+  isOptionalNode,
   isRequired,
   isBoolean,
   isInteger,
