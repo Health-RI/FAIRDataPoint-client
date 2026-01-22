@@ -1,6 +1,6 @@
-@import "../../scss/variables";
-@import "../../scss/mixins";
-@import "../../scss/typography";
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
+@use "../../scss/typography" as *;
 
 .header {
   width: 100%;
@@ -41,6 +41,7 @@
             display: block;
             font-size: 1rem;
             margin-top: -0.5rem;
+            font-weight: 400;
           }
         }
       }

@@ -1,7 +1,8 @@
 import config from '@/config'
+import { Store } from 'vuex'
 import request from './request'
 
-const createRequestInterceptor = (store) => {
+const createRequestInterceptor = (store: Store<any>) => {
   request.interceptors.request.use((oldConfig) => {
     const newConfig = { ...oldConfig }
 
@@ -14,7 +15,7 @@ const createRequestInterceptor = (store) => {
   }, null)
 }
 
-const createResponseInterceptor = (store) => {
+const createResponseInterceptor = (store: Store<any>) => {
   request.interceptors.response.use(null, async (error) => {
     const { status } = error.response
     if (status === 401 && !error.request.responseURL.endsWith('/tokens')) {
@@ -26,7 +27,7 @@ const createResponseInterceptor = (store) => {
   })
 }
 
-const plugin = (store) => {
+const plugin = (store: Store<any>) => {
   createRequestInterceptor(store)
   createResponseInterceptor(store)
 }

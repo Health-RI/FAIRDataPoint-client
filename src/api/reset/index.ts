@@ -1,7 +1,7 @@
 import request from '../request'
 
 export default {
-  postReset(reset) {
+  postReset(reset: Record<string, unknown>) {
     return request.post('/reset', reset)
   },
 }
