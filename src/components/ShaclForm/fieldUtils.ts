@@ -44,7 +44,8 @@ function isRequired(field: FormField): boolean {
 }
 
 function isOptionalNode(field: FormField): boolean {
-  return field.nodeShape && !field.minCount && field.maxCount === 1
+  const minCount = field.minCount ?? 0
+  return !!field.nodeShape && minCount === 0 && field.maxCount === 1
 }
 
 function isBoolean(field: FormField): boolean {
