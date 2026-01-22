@@ -66,11 +66,11 @@
                       :from="lineNumbersPrefixes"
                       :to="lineNumbersPrefixesInput"
                     />
-                    <textarea
+                    <prism-editor
                       v-model="sparqlQuery.prefixes"
-                      class="w-100"
-                      :rows="textareaRows(sparqlQuery.prefixes)"
-                      @input="clearSelectedSavedQuery"
+                      class="prism-editor-wrapper w-100"
+                      language="sparql"
+                      @update:modelValue="clearSelectedSavedQuery"
                     />
                   </div>
                   <div class="sparql-block">
@@ -85,11 +85,11 @@
                       :from="lineNumbersSelectStart"
                       :to="lineNumbersGraphPatterns"
                     />
-                    <textarea
+                    <prism-editor
                       v-model="sparqlQuery.graphPattern"
-                      class="graph-patterns"
-                      :rows="textareaRows(sparqlQuery.graphPattern)"
-                      @input="clearSelectedSavedQuery"
+                      class="prism-editor-wrapper graph-patterns"
+                      language="sparql"
+                      @update:modelValue="clearSelectedSavedQuery"
                     />
                   </div>
                   <div class="sparql-block">
@@ -104,11 +104,11 @@
                       :from="lineNumbersSelectEnd"
                       :to="lineNumbersOrdering"
                     />
-                    <textarea
+                    <prism-editor
                       v-model="sparqlQuery.ordering"
-                      class="w-100"
-                      :rows="textareaRows(sparqlQuery.ordering)"
-                      @input="clearSelectedSavedQuery"
+                      class="prism-editor-wrapper w-100"
+                      language="sparql"
+                      @update:modelValue="clearSelectedSavedQuery"
                     />
                   </div>
                   <div class="sparql-block">
@@ -346,12 +346,18 @@ import api from '@/api'
 import rdfUtils from '@/rdf/utils'
 import { truncate } from '@/filters'
 import Page from '@/components/Page/index.vue'
+import PrismEditor from '@/components/PrismEditor/index.vue'
 import Status from '@/utils/Status'
 import StatusFlash from '@/components/StatusFlash/index.vue'
 import LineNumbers from '@/views/SearchResults/LineNumbers.vue'
 
 export default defineComponent({
-  components: { LineNumbers, Page, StatusFlash },
+  components: {
+    LineNumbers,
+    Page,
+    PrismEditor,
+    StatusFlash,
+  },
   data() {
     return {
       query: null,
