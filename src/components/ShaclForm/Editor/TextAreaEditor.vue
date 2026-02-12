@@ -8,14 +8,14 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import fieldUtils from '@/components/ShaclForm/fieldUtils'
 import rdfUtils from '@/rdf/utils'
 
 export default defineComponent({
   props: {
-    field: { type: Object, required: true },
-    modelValue: { type: [String, Object], required: true },
+    field: { type: Object as PropType<any>, required: true },
+    modelValue: { type: [String, Object] as PropType<any>, required: true },
   },
   emits: ['update:modelValue'],
   computed: {

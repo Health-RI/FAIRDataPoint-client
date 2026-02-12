@@ -1,4 +1,5 @@
 import * as $rdf from 'rdflib'
+import type { ValueType } from 'rdflib/lib/types'
 import { Field, SHACLParser, Shape } from '@/components/ShaclForm/Parser/SHACLParser'
 import { SHACL } from '@/rdf/namespaces'
 
@@ -62,12 +63,12 @@ export class SHACLFormParser extends SHACLParser<FormField, FormShape> {
     return new FormShape()
   }
 
-  protected createShape(properties: FormField[], shape: any): FormShape {
+  protected createShape(properties: FormField[], shape: ValueType): FormShape {
     const targetClasses = this.store
       .match(shape, SHACL('targetClass'), null, null)
       .map((s) => s.object)
 
-    return new FormShape(properties, targetClasses as any[])
+    return new FormShape(properties, targetClasses)
   }
 
   protected mergeShapes(shape1: FormShape, shape2: FormShape): FormShape {

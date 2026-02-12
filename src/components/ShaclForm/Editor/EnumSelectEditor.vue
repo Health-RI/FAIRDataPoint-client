@@ -17,15 +17,15 @@
   </select>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import * as $rdf from 'rdflib'
 import _ from 'lodash'
 import rdfUtils from '@/rdf/utils'
 
 export default defineComponent({
   props: {
-    field: { type: Object, required: true },
-    modelValue: { type: [Object, String], required: true },
+    field: { type: Object as PropType<any>, required: true },
+    modelValue: { type: [Object, String] as PropType<any>, required: true },
   },
   emits: ['update:modelValue'],
   methods: {

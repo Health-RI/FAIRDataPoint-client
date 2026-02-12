@@ -42,9 +42,7 @@ export class Group<F> {
   }
 
   compare(other: Group<F>): number {
-    const order = this.order ?? 0
-    const otherOrder = other.order ?? 0
-    return order > otherOrder ? 1 : -1
+    return this.order > other.order ? 1 : -1
   }
 }
 
