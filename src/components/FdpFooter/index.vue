@@ -43,7 +43,7 @@ export default defineComponent({
   components: { Separator, VersionInfoTable },
   data() {
     return {
-      info: { version: '', builtAt: '' },
+      info: { version: '', builtAt: '' } as any,
     }
   },
   computed: {

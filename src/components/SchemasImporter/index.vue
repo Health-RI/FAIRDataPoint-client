@@ -118,9 +118,9 @@ export default defineComponent({
   },
   data() {
     return {
-      importStatus: new Status(),
-      metadataSchemaGroups: [],
-      showDefinition: [],
+      importStatus: new Status() as Status,
+      metadataSchemaGroups: [] as any[],
+      showDefinition: [] as string[],
     }
   },
   computed: {

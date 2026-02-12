@@ -52,10 +52,10 @@ export default defineComponent({
   emits: ['update:modelValue'],
   data() {
     return {
-      label: '',
-      searchValue: '',
-      options: null,
-      debounceGetOptions: null,
+      label: '' as string,
+      searchValue: '' as string,
+      options: null as any,
+      debounceGetOptions: null as any,
     }
   },
   computed: {

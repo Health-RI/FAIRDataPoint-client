@@ -90,10 +90,10 @@ export default defineComponent({
   },
   data() {
     return {
-      shacl: null,
+      shacl: null as any,
       validationReport: {} as ValidationReport,
-      submitStatus: new Status(),
-      rawError: null,
+      submitStatus: new Status() as Status,
+      rawError: null as string | null,
     }
   },
   computed: {

@@ -57,9 +57,9 @@ export default defineComponent({
   props: {
     config: { type: Object as PropType<EntityConfig>, required: true },
     childSpec: { type: Object as PropType<ChildSpec>, required: true },
-    meta: { type: Object, required: true },
+    meta: { type: Object as PropType<any>, required: true },
     childUrlPrefix: { type: String, required: true },
-    entityId: { type: [String, Number], required: true },
+    entityId: { type: [String, Number] as PropType<any>, required: true },
     title: { type: String, required: true },
     createLink: { type: String, required: false, default: null },
   },
@@ -67,11 +67,11 @@ export default defineComponent({
     return {
       status: new Status(),
       items: [] as Array<any>,
-      currentPage: null,
-      firstPage: null,
-      lastPage: null,
-      prevPage: null,
-      nextPage: null,
+      currentPage: null as number | null,
+      firstPage: null as number | null,
+      lastPage: null as number | null,
+      prevPage: null as number | null,
+      nextPage: null as number | null,
     }
   },
   computed: {

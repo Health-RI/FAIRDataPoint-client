@@ -2,12 +2,12 @@
   <div />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { Network } from 'vis-network'
 
 export default defineComponent({
   props: {
-    modelData: { type: Object, required: true },
+    modelData: { type: Object as PropType<any>, required: true },
   },
   data() {
     return {

@@ -19,8 +19,8 @@ import _ from 'lodash'
 export default defineComponent({
   data() {
     return {
-      q: '',
-      routeQ: null,
+      q: '' as string,
+      routeQ: '' as string,
     }
   },
   watch: {

@@ -163,16 +163,16 @@ export default defineComponent({
   components: { Pagination, StatusFlash },
   data() {
     return {
-      data: null,
-      info: null,
-      filter: 'ACTIVE',
-      permitFilter: 'ACCEPTED',
-      sort: 'updatedAt,desc',
-      page: 1,
-      status: new Status(),
-      actionStatus: new Status(),
-      states: ['ALL', 'ACTIVE', 'INACTIVE', 'UNREACHABLE', 'INVALID', 'UNKNOWN'],
-      permits: ['ALL', 'ACCEPTED', 'REJECTED', 'PENDING'],
+      data: null as any,
+      info: null as any,
+      filter: 'ACTIVE' as string,
+      permitFilter: 'ACCEPTED' as string,
+      sort: 'updatedAt,desc' as string,
+      page: 1 as number,
+      status: new Status() as Status,
+      actionStatus: new Status() as Status,
+      states: ['ALL', 'ACTIVE', 'INACTIVE', 'UNREACHABLE', 'INVALID', 'UNKNOWN'] as string[],
+      permits: ['ALL', 'ACCEPTED', 'REJECTED', 'PENDING'] as string[],
     }
   },
   computed: {

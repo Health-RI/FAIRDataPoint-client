@@ -138,11 +138,11 @@ export default defineComponent({
       inviteForm: {
         userUuid: null,
         membershipUuid: null,
-      },
-      inviteStatus: new Status(),
-      members: null,
-      memberships: null,
-      users: null,
+      } as any,
+      inviteStatus: new Status() as Status,
+      members: null as any,
+      memberships: null as any,
+      users: null as any,
     }
   },
   methods: {

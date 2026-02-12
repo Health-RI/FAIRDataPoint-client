@@ -46,12 +46,12 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { truncate } from '@/filters'
 
 export default defineComponent({
   props: {
-    item: { type: Object, required: true },
+    item: { type: Object as PropType<any>, required: true },
   },
   methods: {
     truncate(value: string) {

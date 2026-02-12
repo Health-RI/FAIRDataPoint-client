@@ -5,7 +5,7 @@ export default {
     return request.get('/api-keys')
   },
 
-  postApiKey(apiKey: Record<string, unknown>) {
+  postApiKey(apiKey: Record<string, unknown> = {}) {
     return request.post('/api-keys', apiKey)
   },
 

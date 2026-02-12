@@ -86,7 +86,7 @@ export default defineComponent({
     async generateApiKey() {
       try {
         this.status.setPending()
-        await api.apiKeys.postApiKey({})
+        await api.apiKeys.postApiKey()
         this.status.setDone()
         await this.fetchData()
       } catch (error) {

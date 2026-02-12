@@ -14,13 +14,13 @@
   </select>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import valueUtils from '@/components/ShaclForm/valueUtils'
 
 export default defineComponent({
   props: {
-    field: { type: Object, required: true },
-    modelValue: { type: [Boolean, String, Object], required: true },
+    field: { type: Object as PropType<any>, required: true },
+    modelValue: { type: [Boolean, String, Object] as PropType<any>, required: true },
   },
   emits: ['update:modelValue'],
   methods: {

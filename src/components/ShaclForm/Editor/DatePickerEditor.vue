@@ -8,16 +8,16 @@
   >
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import moment from 'moment'
 import rdfUtils from '@/rdf/utils'
 
 export default defineComponent({
   props: {
-    field: { type: Object, required: true },
-    modelValue: { type: [String, Date, Object], required: true },
-    format: { type: String, required: true },
-    type: { type: String, required: false, default: 'date' },
+    field: { type: Object as PropType<any>, required: true },
+    modelValue: { type: [String, Date, Object] as PropType<any>, required: true },
+    format: { type: String as PropType<any>, required: true },
+    type: { type: String as PropType<any>, required: false, default: 'date' },
   },
   emits: ['update:modelValue'],
   computed: {

@@ -8,12 +8,12 @@
   </span>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import _ from 'lodash'
 
 export default defineComponent({
   props: {
-    entity: { type: Object, required: true },
+    entity: { type: Object as PropType<any>, required: true },
   },
   computed: {
     role() {
