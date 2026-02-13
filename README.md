@@ -55,8 +55,8 @@ $ npm run build
 
 The nginx container can be configured at runtime using environment variables:
 
-- `API_URL` (optional): absolute URL the browser should call for the API (recommended for Docker).
-- `FDP_HOST` (optional): backend host:port used by nginx proxy inside the container network.
+- `API_URL` (optional): browser-facing API base URL. For Docker, use `/` to call same-origin and avoid CORS/internal DNS issues.
+- `FDP_HOST` (required for Docker proxy): backend `host:port` used by nginx inside the container network. Do not include `http://` or `https://`.
 - `FDP_SCHEME` (optional): `http` or `https` for the proxy (`http` default).
 - `PUBLIC_PATH` (optional): base path if serving under a subpath (e.g. `/app`).
 - `REBUILD_STYLES` (optional): set to any value to force rebuilding SCSS at container start.
@@ -67,8 +67,7 @@ Example: backend is another container on the same network (`fdp` service):
 docker run --rm -p 8081:80 \
   --network fdppv1_default \
   -e FDP_HOST=fdp:8080 \
-  -e FDP_SCHEME=http \
-  -e API_URL=http://localhost:8081 \
+  -e API_URL=/ \
   fdp-client
 ```
 
@@ -77,8 +76,7 @@ Example: backend is on host machine:
 ```
 docker run --rm -p 8081:80 \
   -e FDP_HOST=host.docker.internal:8080 \
-  -e FDP_SCHEME=http \
-  -e API_URL=http://localhost:8081 \
+  -e API_URL=/ \
   fdp-client
 ```
 
