@@ -1,0 +1,27 @@
+name: Run Tests
+
+on: push
+
+jobs:
+  test-frontend:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Install
+        run: |
+          npm install
+      - name: Run Unit Test
+        run: |
+          npm run test
+      - name: Lint
+        run: |
+          npm run lint
+      - name: Prettier
+        run: |
+          npm run format
