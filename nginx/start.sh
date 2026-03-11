@@ -17,13 +17,20 @@ CONFIG_JS="window.config={publicPath:'$PUBLIC_PATH'"
 
 if [ -n "$API_URL" ]; then
   CONFIG_JS="$CONFIG_JS,apiURL:'$API_URL'"
-elif [ -n "$FDP_HOST" ]; then
-  FDP_SCHEME_VALUE="${FDP_SCHEME:-http}"
-  CONFIG_JS="$CONFIG_JS,apiURL:'${FDP_SCHEME_VALUE}://${FDP_HOST}'"
+else
+  # Default browser requests to same-origin; nginx will proxy to FDP_HOST.
+  CONFIG_JS="$CONFIG_JS,apiURL:'$PUBLIC_PATH'"
 fi
 
 CONFIG_JS="$CONFIG_JS};"
 echo -n "$CONFIG_JS" > ${config}
+
+# normalize FDP_HOST for nginx proxy_pass (expects host[:port], no scheme/path)
+if [ -z "$FDP_HOST" ]; then
+  echo "FDP_HOST is required and must be set as host:port (for example: fdp:8080)." >&2
+  exit 1
+fi
+FDP_HOST="$(printf '%s' "$FDP_HOST" | sed 's#^http://##; s#^https://##; s#/.*$##')"
 
 # set correct FDP Host for proxy pass
 sed -i "s#\$FDP_HOST#"$FDP_HOST"#g" /etc/nginx/conf.d/default.conf
