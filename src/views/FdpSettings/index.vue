@@ -130,7 +130,7 @@
               <label for="users">
                 <input
                   id="users"
-                  v-model="v$.settings.ping.enabled"
+                  v-model="v$.settings.ping.enabled.$model"
                   type="checkbox"
                 > Enabled
               </label>
