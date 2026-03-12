@@ -74,7 +74,9 @@ function commonMetadata(graph: Graph) {
 
       return {
         label: label || rdfUtils.pathTerm(uriString),
-        uri: uriString.replace(config.persistentURL(), config.clientURL),
+        uri: uriString
+          .replace(config.persistentURL(), config.clientURL)
+          .replaceAll(/([^:]\/)\/+/g, '$1'),
         resolved: true,
       }
     })
