@@ -276,10 +276,21 @@ export default defineComponent({
       ])
     },
     createMetadata() {
-      return [
+      const mergedMetadata = [
         ...metadata.commonMetadata(this.graph),
         ...this.createLocalMetadata(),
       ]
+
+      const allGroupsWithoutLabel = mergedMetadata.every((group) => !group.label)
+      if (allGroupsWithoutLabel) {
+        return _.orderBy(
+          mergedMetadata,
+          (group) => _.get(group, 'fields.0.label', '').toLocaleLowerCase(),
+          ['asc'],
+        )
+      }
+
+      return mergedMetadata
     },
     createLocalMetadata() {
       const conformsToPath = DCT('conformsTo').value
@@ -292,17 +303,6 @@ export default defineComponent({
               mappedField: metadata.fromShaclField(this.graph, field),
             }))
             .filter((entry) => entry.mappedField !== null && entry.field.path !== conformsToPath)
-            .sort((a, b) => {
-              const orderA = a.field.order ?? Number.MAX_SAFE_INTEGER
-              const orderB = b.field.order ?? Number.MAX_SAFE_INTEGER
-              if (orderA !== orderB) {
-                return orderA - orderB
-              }
-
-              const labelA = _.get(a, 'mappedField.label', '').toLocaleLowerCase()
-              const labelB = _.get(b, 'mappedField.label', '').toLocaleLowerCase()
-              return labelA.localeCompare(labelB)
-            })
             .map((entry) => entry.mappedField),
           label: group.label,
           comment: group.comment,
