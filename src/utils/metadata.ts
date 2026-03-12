@@ -71,12 +71,16 @@ function commonMetadata(graph: Graph) {
       const label = graph.findOne(RDFS('label'), {
         subject: $rdf.namedNode(uriString),
       })
+      const persistentBase = config.persistentURL().replace(/\/+$/, '')
+      const clientBase = config.clientURL.replace(/\/+$/, '')
+
+      const relativePath = uriString
+        .replace(persistentBase, '')
+        .replace(/^\/+/, '')
 
       return {
         label: label || rdfUtils.pathTerm(uriString),
-        uri: uriString
-          .replace(config.persistentURL(), config.clientURL)
-          .replaceAll(/([^:]\/)\/+/g, '$1'),
+        uri: `${clientBase}/${relativePath}`,
         resolved: true,
       }
     })
