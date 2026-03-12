@@ -35,13 +35,14 @@
   background: $color-background-highlighted;
   padding: $space-md;
   margin-bottom: $space-md;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: $font-family-mono;
 
   pre,
   .prism-editor,
   .prism-editor__textarea,
-  .prism-editor__code {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  .prism-editor__code,
+  .prism-editor__code * {
+    font-family: $font-family-mono !important;
   }
 
   &-block {
