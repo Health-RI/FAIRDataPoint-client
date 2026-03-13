@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.1] - 2026-02-13
+
+### Fixed
+- fix resolve host by @Hans-christian in 0aa3a73
+
+
+
 ## [1.17.0]
 
 ### Added
