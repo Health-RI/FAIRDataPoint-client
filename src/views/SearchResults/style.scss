@@ -35,6 +35,15 @@
   background: $color-background-highlighted;
   padding: $space-md;
   margin-bottom: $space-md;
+  font-family: $font-family-mono;
+
+  pre,
+  .prism-editor,
+  .prism-editor__textarea,
+  .prism-editor__code,
+  .prism-editor__code * {
+    font-family: $font-family-mono;
+  }
 
   &-block {
     display: flex;
