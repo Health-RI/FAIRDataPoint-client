@@ -87,6 +87,7 @@
             >
               <template #actions>
                 <b-dropdown
+                  class="d-inline-block"
                   variant="outline-secondary btn-rounded"
                   :text="member.membership.name"
                   right
