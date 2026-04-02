@@ -173,6 +173,7 @@ import { parseSHACLView } from '@/components/ShaclForm/Parser/SHACLViewParser'
 import EntityBase from '@/components/EntityBase'
 import FairDataPoints from '@/components/FairDataPoints/index.vue'
 import config from '@/config'
+import { DCT } from '@/rdf/namespaces'
 
 export default defineComponent({
   components: {
@@ -275,17 +276,34 @@ export default defineComponent({
       ])
     },
     createMetadata() {
-      return [
+      const mergedMetadata = [
         ...metadata.commonMetadata(this.graph),
         ...this.createLocalMetadata(),
       ]
+
+      const allGroupsWithoutLabel = mergedMetadata.every((group) => !group.label)
+      if (allGroupsWithoutLabel) {
+        return _.orderBy(
+          mergedMetadata,
+          (group) => _.get(group, 'fields.0.label', '').toLocaleLowerCase(),
+          ['asc'],
+        )
+      }
+
+      return mergedMetadata
     },
     createLocalMetadata() {
+      const conformsToPath = DCT('conformsTo').value
+
       return this.groups
         .map((group) => ({
           fields: group.fields
-            .map((field) => metadata.fromShaclField(this.graph, field))
-            .filter((field) => field !== null),
+            .map((field) => ({
+              field,
+              mappedField: metadata.fromShaclField(this.graph, field),
+            }))
+            .filter((entry) => entry.mappedField !== null && entry.field.path !== conformsToPath)
+            .map((entry) => entry.mappedField),
           label: group.label,
           comment: group.comment,
         }))

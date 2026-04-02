@@ -42,7 +42,15 @@ export class Group<F> {
   }
 
   compare(other: Group<F>): number {
-    return this.order > other.order ? 1 : -1
+    const order = this.order ?? Number.MAX_SAFE_INTEGER
+    const otherOrder = other.order ?? Number.MAX_SAFE_INTEGER
+    if (order !== otherOrder) {
+      return order - otherOrder
+    }
+
+    const label = (this.label || this.iri || '').toLocaleLowerCase()
+    const otherLabel = (other.label || other.iri || '').toLocaleLowerCase()
+    return label.localeCompare(otherLabel)
   }
 }
 
@@ -88,9 +96,15 @@ export class Field<S> {
   }
 
   compare(other: Field<S>): number {
-    const order = this.order ?? 0
-    const otherOrder = other.order ?? 0
-    return order > otherOrder ? 1 : -1
+    const order = this.order ?? Number.MAX_SAFE_INTEGER
+    const otherOrder = other.order ?? Number.MAX_SAFE_INTEGER
+    if (order !== otherOrder) {
+      return order - otherOrder
+    }
+
+    const label = (this.name || this.path || '').toLocaleLowerCase()
+    const otherLabel = (other.name || other.path || '').toLocaleLowerCase()
+    return label.localeCompare(otherLabel)
   }
 }
 
@@ -179,10 +193,7 @@ export abstract class SHACLParser<F extends Field<S>, S extends Shape<F>> {
   protected abstract mergeShapes(shape1: S, shape2: S): S;
 
   protected sortFields(shape: S): S {
-    const compareFields = (field1: F, field2: F) => (
-      (field1.order ?? 0) > (field2.order ?? 0) ? 1 : -1
-    )
-    shape.fields.sort(compareFields)
+    shape.fields.sort((field1, field2) => field1.compare(field2))
     return shape
   }
 
