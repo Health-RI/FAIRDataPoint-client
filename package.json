@@ -20,7 +20,7 @@
     "bootstrap-vue-next": "^0.42.0",
     "buffer": "^6.0.3",
     "core-js": "^3.37.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "moment": "^2.29.4",
     "parse-link-header": "^2.0.0",
     "prismjs": "^1.21.0",
