@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.3] - 2026-03-11
+
+### Changed
+- Bump serialize-javascript and terser-webpack-plugin by @dependabot[bot] in 6c88746
+- Bump immutable from 5.1.4 to 5.1.5 by @dependabot[bot] in 2c8aa06
+- Bump minimatch from 3.1.2 to 3.1.5 by @dependabot[bot] in 96a8d15
+- Bump rollup from 4.55.2 to 4.59.0 by @dependabot[bot] in 3c1b5f4
+- Bump axios from 1.13.2 to 1.13.5 by @dependabot[bot] in 97790f7
+- doc: update CHANGELOG.md for v1.0.0 by @LNDS-Sysadmins in 8b7bef9
+
+### Fixed
+- fix ping save by @Hans-christian in 9411e54
+- fix index.html by @Hans-christian in fb97994
+- Cherry pick fix of host by @Hans-christian in 241aa72
+
+
+
 ## [1.17.0]
 
 ### Added
