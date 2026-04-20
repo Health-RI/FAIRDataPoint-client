@@ -1,5 +1,11 @@
 <template>
-  <entity-view :config="config" />
+  <entity-view
+    v-if="config"
+    :config="config"
+  />
+  <div v-else class="alert alert-warning m-3">
+    Unable to load entity configuration. Please verify the entity URL.
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
