@@ -80,13 +80,18 @@ docker run --rm -p 8081:80 \
   fdp-client
 ```
 
-Example: backend is an external HTTPS FDP and you still want same-origin browser requests through nginx:
+Example: backend is an external HTTPS FDP and you still want same-origin browser requests
+through nginx. Configure the target via environment variables:
 
 ```
+export FDP_HOST=your-fdp-host.example.org
+export FDP_SCHEME=https
+export API_URL=/
+
 docker run --rm -p 8081:80 \
-  -e FDP_HOST=fdp-test.healthdata.nl \
-  -e FDP_SCHEME=https \
-  -e API_URL=/ \
+  -e FDP_HOST \
+  -e FDP_SCHEME \
+  -e API_URL \
   fdp-client
 ```
 
