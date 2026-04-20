@@ -48,11 +48,17 @@ export default defineComponent({
     async init(): Promise<void> {
       this.resetBase()
       this.reset()
+
+      if (!this.config?.api) {
+        this.status.setError('Unable to load entity configuration.')
+        return
+      }
+
       this.fetchData()
     },
     reset(): void {},
     async fetchData(): Promise<void> {
-      return Promise.resolve()
+      return undefined
     },
     buildGraph(data: string) {
       this.graph = new Graph(data, this.subject)

@@ -58,7 +58,20 @@ export default class Status {
 
   setErrorFromResponse(error: any, defaultMsg: string): void {
     this.status = Status.ERROR
-    this.msg = _.get(error, 'response.data.message', defaultMsg)
+    const responseMessage = _.get(error, 'response.data.message')
+    const responseBody = _.get(error, 'response.data')
+    const errorMessage = _.get(error, 'message')
+
+    if (typeof responseMessage === 'string' && responseMessage.trim().length > 0) {
+      this.msg = responseMessage
+    } else if (typeof responseBody === 'string' && responseBody.trim().length > 0) {
+      this.msg = responseBody
+    } else if (typeof errorMessage === 'string' && errorMessage.trim().length > 0) {
+      this.msg = `${defaultMsg} (${errorMessage})`
+    } else {
+      this.msg = defaultMsg
+    }
+
     this.errorCode = _.get(error, 'response.status') ?? null
   }
 

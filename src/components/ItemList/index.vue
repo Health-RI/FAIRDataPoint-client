@@ -110,7 +110,7 @@ export default defineComponent({
 
         const parsePage = (page) => {
           const pageString = _.get(linkHeader, `${page}.page`)
-          return pageString ? parseInt(pageString, 10) : pageString
+          return pageString ? Number.parseInt(pageString, 10) : pageString
         }
 
         this.firstPage = parsePage('first')
@@ -120,15 +120,21 @@ export default defineComponent({
 
         const { resourceDefinitionUuid } = this.childSpec
         const childEntityConfig = this.$store.getters['entities/configByUuid'](resourceDefinitionUuid)
+
+        if (!childEntityConfig) {
+          this.status.setError('Unable to load child entity configuration')
+          return
+        }
+
         this.items = this.config.createChildrenList(
-          childEntityConfig.spec,
+          childEntityConfig.entitySpec,
           this.childSpec,
           graph,
           this.meta,
         )
 
         this.status.setDone()
-      } catch (error) {
+      } catch {
         this.status.setError('Unable to load data')
       }
     },

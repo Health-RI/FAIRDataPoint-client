@@ -32,8 +32,23 @@ if [ -z "$FDP_HOST" ]; then
 fi
 FDP_HOST="$(printf '%s' "$FDP_HOST" | sed 's#^http://##; s#^https://##; s#/.*$##')"
 
+# normalize proxy scheme
+if [ -z "$FDP_SCHEME" ]; then
+  FDP_SCHEME="http"
+fi
+
+case "$FDP_SCHEME" in
+  http|https)
+    ;;
+  *)
+    echo "FDP_SCHEME must be either 'http' or 'https'." >&2
+    exit 1
+    ;;
+esac
+
 # set correct FDP Host for proxy pass
 sed -i "s#\$FDP_HOST#"$FDP_HOST"#g" /etc/nginx/conf.d/default.conf
+sed -i "s#\$FDP_SCHEME#"$FDP_SCHEME"#g" /etc/nginx/conf.d/default.conf
 
 # set correct Public Path
 if [ -d /usr/share/nginx/html/assets ]; then
