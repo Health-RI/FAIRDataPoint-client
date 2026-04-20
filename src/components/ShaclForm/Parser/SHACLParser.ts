@@ -122,35 +122,48 @@ export abstract class SHACLParser<F extends Field<S>, S extends Shape<F>> {
     $rdf.parse(shacl, this.store, DEFAULT_URI, 'text/turtle', undefined)
   }
 
+  protected mergeAllShapes(shapes: S[]): S {
+    return shapes.reduce(
+      (mergedShape, currentShape) => this.mergeShapes(mergedShape, currentShape),
+      this.createEmptyShape(),
+    )
+  }
+
   public parse(targetClasses: any[]): S {
-    return this.sortFields(targetClasses
-      .flatMap((tc) => this.loadShapes(tc))
-      .map((s) => this.loadShapeForm(s))
-      .reduce(this.mergeShapes))
+    const shape = this.mergeAllShapes(
+      targetClasses
+        .flatMap((tc) => this.loadShapes(tc))
+        .map((s) => this.loadShapeForm(s)),
+    )
+
+    return this.sortFields(shape)
   }
 
   public parseAndGroup(targetClasses: any[]): Group<F>[] {
-    const shape = targetClasses
-      .flatMap((tc) => this.loadShapes(tc))
-      .map((s) => this.loadShapeForm(s))
-      .reduce(this.mergeShapes)
+    const shape = this.mergeAllShapes(
+      targetClasses
+        .flatMap((tc) => this.loadShapes(tc))
+        .map((s) => this.loadShapeForm(s)),
+    )
 
     return this.group(shape)
   }
 
   public parseAll(): S {
-    return this.store
-      .match(null, RDF('type'), SHACL('NodeShape'), null)
-      .map((s) => this.loadShapeForm(s.subject))
-      .reduce(this.mergeShapes)
+    return this.mergeAllShapes(
+      this.store
+        .match(null, RDF('type'), SHACL('NodeShape'), null)
+        .map((s) => this.loadShapeForm(s.subject)),
+    )
   }
 
   public parseAllAndGroup(): Group<F>[] {
-    const shape = this.store
-      .match(null, RDF('type'), SHACL('NodeShape'), null)
-      .filter((s) => this.store.match(null, null, s.subject).length === 0)
-      .map((s) => this.loadShapeForm(s.subject))
-      .reduce(this.mergeShapes)
+    const shape = this.mergeAllShapes(
+      this.store
+        .match(null, RDF('type'), SHACL('NodeShape'), null)
+        .filter((s) => this.store.match(null, null, s.subject).length === 0)
+        .map((s) => this.loadShapeForm(s.subject)),
+    )
 
     return this.group(shape)
   }
