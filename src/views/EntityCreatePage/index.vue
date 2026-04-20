@@ -1,22 +1,31 @@
 <template>
   <entity-create
-    v-if="config && parentConfig"
-    :config="config"
-    :parent-config="parentConfig"
+    v-if="entityConfig && entityParentConfig"
+    :config="entityConfig"
+    :parent-config="entityParentConfig"
   />
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 import _ from 'lodash'
+import { ChildSpec, EntityConfig } from '@/entity/EntityConfig'
 import EntityCreate from '@/components/EntityCreate/index.vue'
 
 export default defineComponent({
   components: { EntityCreate },
   data() {
     return {
-      config: null,
-      parentConfig: null,
+      config: null as EntityConfig | null,
+      parentConfig: null as EntityConfig | null,
     }
+  },
+  computed: {
+    entityConfig(): EntityConfig | undefined {
+      return this.config as EntityConfig | undefined
+    },
+    entityParentConfig(): EntityConfig | undefined {
+      return this.parentConfig as EntityConfig | undefined
+    },
   },
   watch: {
     $route: 'init',
@@ -34,7 +43,7 @@ export default defineComponent({
       if (!this.config || !this.parentConfig) return
 
       const containsChild = this.parentConfig.children.some(
-        (child) => child.resourceDefinitionUuid === this.config.uuid,
+        (child: ChildSpec) => child.resourceDefinitionUuid === this.config?.uuid,
       )
 
       if (!containsChild) {
