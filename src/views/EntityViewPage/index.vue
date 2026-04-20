@@ -11,7 +11,7 @@
       <li>The API_URL environment variable is misconfigured</li>
       <li>The network connection to the backend has an issue</li>
     </ul>
-    <p>Check the browser console (F12) for more details.</p>
+    <p>Check the browser console or developer tools for more details.</p>
   </div>
 </template>
 <script lang="ts">
