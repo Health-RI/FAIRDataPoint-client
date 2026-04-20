@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.9] - 2026-04-20
+
+### Changed
+- try again by @Hans-christian in a2baa13
+- Another attempt by @Hans-christian in 1b2660b
+- Check if this works by @Hans-christian in 86632d8
+- Guard metadata sorting against non-string labels by @Hans-christian in 6c17382
+
+### Fixed
+- fix tests by @Hans-christian in a0409bf
+
+
+
 ## [v1.0.3] - 2026-03-11
 
 ### Changed
