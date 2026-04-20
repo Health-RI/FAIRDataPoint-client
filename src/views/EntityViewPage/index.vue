@@ -36,7 +36,7 @@ export default defineComponent({
     init() {
       const url = _.get(this.$route, 'params.entity', '')
       this.config = this.$store.getters['entities/config'](url)
-      
+
       if (!this.config) {
         console.error(`Entity config not found for: ${url}`)
         console.error('Available entity configs:', Object.keys(this.$store.state.entities.entityConfigs))

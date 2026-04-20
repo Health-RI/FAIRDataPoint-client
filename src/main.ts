@@ -1,8 +1,5 @@
 import './polyfills'
 import _ from 'lodash'
-
-console.log('🚀 FDP Client Starting...')
-
 import { createApp } from 'vue'
 import { Components, Directives, createBootstrap } from 'bootstrap-vue-next'
 import vSelect from 'vue-select'
@@ -22,24 +19,27 @@ import { createStore } from './store'
 import api from './api'
 import { registerFontAwesome } from './font-awesome'
 
+console.log('🚀 FDP Client Starting...')
+
 let entitySpecs: EntitySpec[] = []
 
 api.configs.getBootstrap()
-  .then((config) => {
-    console.log('Bootstrap config loaded successfully:', config.data)
+  .then((response: any) => {
+    console.log('Bootstrap config loaded successfully:', response.data)
     // default to remote config from FDP API, but allow override via local public/config.js file
+    const configData = response.data || {};
     ['persistentURL', 'appTitle', 'appSubtitle', 'index'].forEach(
-      (prop) => {
-        if (!_.has(window, `config.${prop}`)) {
-          _.set(window, `config.${prop}`, _.get(config, `data.${_.camelCase(prop)}`))
+      (prop: string) => {
+        if (!_.has(globalThis, `config.${prop}`)) {
+          _.set(globalThis, `config.${prop}`, _.get(configData, _.camelCase(prop)))
         }
       },
     )
     // use resource definitions from remote config without possibility to override
-    entitySpecs = _.get(config, 'data.resourceDefinitions', [])
+    entitySpecs = _.get(configData, 'resourceDefinitions', [])
     console.log('Entity specs loaded:', entitySpecs.length, 'specs')
   })
-  .catch((error) => {
+  .catch((error: any) => {
     console.error('Failed to fetch bootstrap config from FDP API:', {
       message: error.message,
       status: error.response?.status,
