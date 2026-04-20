@@ -48,8 +48,8 @@ export class Group<F> {
       return order - otherOrder
     }
 
-    const label = (this.label || this.iri || '').toLocaleLowerCase()
-    const otherLabel = (other.label || other.iri || '').toLocaleLowerCase()
+    const label = String(this.label ?? this.iri ?? '').toLocaleLowerCase()
+    const otherLabel = String(other.label ?? other.iri ?? '').toLocaleLowerCase()
     return label.localeCompare(otherLabel)
   }
 }
@@ -102,8 +102,8 @@ export class Field<S> {
       return order - otherOrder
     }
 
-    const label = (this.name || this.path || '').toLocaleLowerCase()
-    const otherLabel = (other.name || other.path || '').toLocaleLowerCase()
+    const label = String(this.name ?? this.path ?? '').toLocaleLowerCase()
+    const otherLabel = String(other.name ?? other.path ?? '').toLocaleLowerCase()
     return label.localeCompare(otherLabel)
   }
 }

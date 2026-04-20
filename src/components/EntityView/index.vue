@@ -221,6 +221,9 @@ export default defineComponent({
     },
   },
   methods: {
+    normalizedSortLabel(value: unknown): string {
+      return String(value ?? '').toLocaleLowerCase()
+    },
     actionEnabled(action: string): boolean {
       return _.includes(this.config.viewActions, action)
     },
@@ -285,7 +288,7 @@ export default defineComponent({
       if (allGroupsWithoutLabel) {
         return _.orderBy(
           mergedMetadata,
-          (group) => _.get(group, 'fields.0.label', '').toLocaleLowerCase(),
+          (group) => this.normalizedSortLabel(_.get(group, 'fields.0.label')),
           ['asc'],
         )
       }
