@@ -1,5 +1,6 @@
 <template>
   <entity-create
+    v-if="config && parentConfig"
     :config="config"
     :parent-config="parentConfig"
   />
@@ -29,6 +30,8 @@ export default defineComponent({
       const parentEntity = _.get(this.$route.params, 'parentEntity', '')
       this.config = this.$store.getters['entities/config'](entity)
       this.parentConfig = this.$store.getters['entities/config'](parentEntity)
+
+      if (!this.config || !this.parentConfig) return
 
       const containsChild = this.parentConfig.children.some(
         (child) => child.resourceDefinitionUuid === this.config.uuid,

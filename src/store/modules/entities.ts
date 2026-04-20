@@ -24,8 +24,8 @@ export function createEntitiesModule(entityConfigs: Record<string, EntityConfig>
         _.get(getConfigFor(state, entity), 'parentEntity'),
       ),
       configByUuid: (state: EntityState) => (uuid: string) => (
-        Object.values(state.entityConfigs).reduce(
-          (cfg, acc) => (_.get(cfg, 'uuid') === uuid ? cfg : acc),
+        Object.values(state.entityConfigs).find(
+          (cfg) => cfg.uuid === uuid,
         )
       ),
     },

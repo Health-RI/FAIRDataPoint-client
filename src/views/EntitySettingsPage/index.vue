@@ -1,5 +1,8 @@
 <template>
-  <entity-settings :config="config" />
+  <entity-settings
+    v-if="config"
+    :config="config"
+  />
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
