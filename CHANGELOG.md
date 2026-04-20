@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.4] - 2026-04-20
+
+### Changed
+- Bump follow-redirects from 1.15.11 to 1.16.0 by @dependabot[bot] in 78a5aac
+- Bump axios from 1.13.5 to 1.15.0 by @dependabot[bot] in 3eb2212
+- Bump vite from 7.3.1 to 7.3.2 by @dependabot[bot] in c811cf1
+- Bump lodash from 4.17.23 to 4.18.1 by @dependabot[bot] in 8b47892
+- Bump flatted and vuex-persist by @dependabot[bot] in 42d1118
+- Bump undici from 6.23.0 to 6.24.1 by @dependabot[bot] in bf7287b
+- Bump @xmldom/xmldom from 0.8.11 to 0.8.12 by @dependabot[bot] in a4a7171
+- Bump picomatch by @dependabot[bot] in 8ed0894
+- cleanup styles by @Hans-christian in c383b57
+- Update src/views/SearchResults/style.scss by @Hans-Christian in f58065b
+- Remove duplicate conformsTo and order alphabetical by @Hans-christian in fb61d55
+- More robust by @Hans-christian in cefc274
+- Fix monospace font by @Hans-christian in b5a0cbf
+- icon on one line with Owner by @Hans-christian in 2180b73
+- docs: update CHANGELOG.md for v1.0.3 by @github-actions[bot] in e6bd152
+
+### Fixed
+- Fix(slash) fix extra slash at the end by @Hans-christian in ca4e94a
+
+### Removed
+- remove !important by @Hans-christian in 9044fcc
+- Order alphatically and remove duplicate conformsTO by @Hans-christian in 7230e01
+
+
+
 ## [v1.0.3] - 2026-03-11
 
 ### Changed
