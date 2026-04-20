@@ -48,8 +48,8 @@ export class Group<F> {
       return order - otherOrder
     }
 
-    const label = String(this.label ?? this.iri ?? '').toLocaleLowerCase()
-    const otherLabel = String(other.label ?? other.iri ?? '').toLocaleLowerCase()
+    const label = (this.label || this.iri || '').toLocaleLowerCase()
+    const otherLabel = (other.label || other.iri || '').toLocaleLowerCase()
     return label.localeCompare(otherLabel)
   }
 }
@@ -102,8 +102,8 @@ export class Field<S> {
       return order - otherOrder
     }
 
-    const label = String(this.name ?? this.path ?? '').toLocaleLowerCase()
-    const otherLabel = String(other.name ?? other.path ?? '').toLocaleLowerCase()
+    const label = (this.name || this.path || '').toLocaleLowerCase()
+    const otherLabel = (other.name || other.path || '').toLocaleLowerCase()
     return label.localeCompare(otherLabel)
   }
 }
@@ -122,48 +122,35 @@ export abstract class SHACLParser<F extends Field<S>, S extends Shape<F>> {
     $rdf.parse(shacl, this.store, DEFAULT_URI, 'text/turtle', undefined)
   }
 
-  protected mergeAllShapes(shapes: S[]): S {
-    return shapes.reduce(
-      (mergedShape, currentShape) => this.mergeShapes(mergedShape, currentShape),
-      this.createEmptyShape(),
-    )
-  }
-
   public parse(targetClasses: any[]): S {
-    const shape = this.mergeAllShapes(
-      targetClasses
-        .flatMap((tc) => this.loadShapes(tc))
-        .map((s) => this.loadShapeForm(s)),
-    )
-
-    return this.sortFields(shape)
+    return this.sortFields(targetClasses
+      .flatMap((tc) => this.loadShapes(tc))
+      .map((s) => this.loadShapeForm(s))
+      .reduce(this.mergeShapes))
   }
 
   public parseAndGroup(targetClasses: any[]): Group<F>[] {
-    const shape = this.mergeAllShapes(
-      targetClasses
-        .flatMap((tc) => this.loadShapes(tc))
-        .map((s) => this.loadShapeForm(s)),
-    )
+    const shape = targetClasses
+      .flatMap((tc) => this.loadShapes(tc))
+      .map((s) => this.loadShapeForm(s))
+      .reduce(this.mergeShapes)
 
     return this.group(shape)
   }
 
   public parseAll(): S {
-    return this.mergeAllShapes(
-      this.store
-        .match(null, RDF('type'), SHACL('NodeShape'), null)
-        .map((s) => this.loadShapeForm(s.subject)),
-    )
+    return this.store
+      .match(null, RDF('type'), SHACL('NodeShape'), null)
+      .map((s) => this.loadShapeForm(s.subject))
+      .reduce(this.mergeShapes)
   }
 
   public parseAllAndGroup(): Group<F>[] {
-    const shape = this.mergeAllShapes(
-      this.store
-        .match(null, RDF('type'), SHACL('NodeShape'), null)
-        .filter((s) => this.store.match(null, null, s.subject).length === 0)
-        .map((s) => this.loadShapeForm(s.subject)),
-    )
+    const shape = this.store
+      .match(null, RDF('type'), SHACL('NodeShape'), null)
+      .filter((s) => this.store.match(null, null, s.subject).length === 0)
+      .map((s) => this.loadShapeForm(s.subject))
+      .reduce(this.mergeShapes)
 
     return this.group(shape)
   }
