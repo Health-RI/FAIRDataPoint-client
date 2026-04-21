@@ -10,27 +10,33 @@ const getEntitySpec = (config: unknown): EntitySpec | undefined => (
   (_.get(config, 'entitySpec') ?? _.get(config, 'spec')) as EntitySpec | undefined
 )
 
-const getSpecsByUuid = (state: EntityState) => (
-  Object.values(state.entityConfigs).reduce<Record<string, any>>((acc, config) => {
+const getSpecsByUuid = (state: EntityState) => {
+  const specsByUuid: Record<string, EntitySpec> = {}
+
+  Object.values(state.entityConfigs).forEach((config) => {
     const spec = getEntitySpec(config)
 
     if (spec?.uuid) {
-      acc[spec.uuid] = spec
+      specsByUuid[spec.uuid] = spec
     }
+  })
 
-    return acc
-  }, {})
-)
+  return specsByUuid
+}
 
 const normalizeConfig = (state: EntityState, config: unknown) => {
-  if (!config) return undefined
+  if (!config) {
+    return undefined
+  }
 
   if (typeof _.get(config, 'api.get') === 'function') {
     return config as EntityConfig
   }
 
   const spec = getEntitySpec(config)
-  if (!spec) return undefined
+  if (!spec) {
+    return undefined
+  }
 
   const Config = spec.urlPrefix ? EntityConfig : RepositoryConfig
   return new Config(spec, getSpecsByUuid(state))
