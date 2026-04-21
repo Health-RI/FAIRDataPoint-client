@@ -1,5 +1,7 @@
 import _ from 'lodash'
 
+const hasText = (value: unknown): value is string => _.isString(value) && value.trim().length > 0
+
 export default class Status {
   static readonly PENDING = 'PENDING'
 
@@ -58,7 +60,20 @@ export default class Status {
 
   setErrorFromResponse(error: any, defaultMsg: string): void {
     this.status = Status.ERROR
-    this.msg = _.get(error, 'response.data.message', defaultMsg)
+    const responseMessage = _.get(error, 'response.data.message')
+    const responseBody = _.get(error, 'response.data')
+    const errorMessage = _.get(error, 'message')
+
+    if (hasText(responseMessage)) {
+      this.msg = responseMessage
+    } else if (hasText(responseBody)) {
+      this.msg = responseBody
+    } else if (hasText(errorMessage)) {
+      this.msg = `${defaultMsg} (${errorMessage})`
+    } else {
+      this.msg = defaultMsg
+    }
+
     this.errorCode = _.get(error, 'response.status') ?? null
   }
 

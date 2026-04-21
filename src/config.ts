@@ -12,6 +12,13 @@ const dateFormat = 'DD-MM-Y'
 const dateTimeFormat = 'DD-MM-Y, HH:mm:ss'
 const defaultPageSize = 5
 
+console.log('Config loaded:', {
+  publicPath,
+  clientURL,
+  apiURL,
+  windowConfig: _.get(window, 'config'),
+})
+
 export default {
   apiURL,
   appSubtitle,
