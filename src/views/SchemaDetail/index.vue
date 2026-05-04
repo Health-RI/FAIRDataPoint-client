@@ -140,14 +140,14 @@
             </label>
             <ul>
               <li
-                v-for="(v, index) in v$.schema.extendsSchemaUuids.$each.$iter"
-                :key="`target-class-${index}`"
+                v-for="(extend, index) in schema.extendsSchemaUuids"
+                :key="`target-class-${extend.uuid ?? index}`"
                 data-cy="target-class"
               >
                 <div class="d-flex align-items-start">
                   <div
                     class="form__group flex-grow-1"
-                    :class="{ 'form__group--error': v.uuid.$error }"
+                    :class="{ 'form__group--error': extendsValidation(index)?.uuid?.$error }"
                   >
                     <select
                       v-model="schema.extendsSchemaUuids[index].uuid"
@@ -162,7 +162,8 @@
                       </option>
                     </select>
                     <p
-                      v-if="!v.uuid.required"
+                      v-if="extendsValidation(index)
+                        && !extendsValidation(index).uuid.required"
                       class="invalid-feedback"
                     >
                       Field cannot be empty
@@ -445,6 +446,10 @@ export default {
 
     removeExtends(index) {
       this.schema.extendsSchemaUuids.splice(index, 1)
+    },
+
+    extendsValidation(index) {
+      return _.get(this.v$, `schema.extendsSchemaUuids.$each.$iter.${index}`)
     },
 
     setViewPreview(viewPreview) {

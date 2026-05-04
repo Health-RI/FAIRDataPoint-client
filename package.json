@@ -28,8 +28,8 @@
     "rdflib": "^2.3.5",
     "semver": "^7.5.2",
     "uuid": "^14.0.0",
-    "vis-data": "^8.0.3",
-    "vis-network": "^10.0.2",
+    "vis-data": "6.4.1",
+    "vis-network": "7.3.5",
     "vue": "^3.4.31",
     "vue-prism-editor": "2.0.0-alpha.2",
     "vue-router": "^4.4.0",
@@ -57,5 +57,10 @@
     "typescript": "^4.6.2",
     "url": "^0.11.0",
     "vite": "^7.3.2"
+  },
+  "overrides": {
+    "vis-util": {
+      "moment": "2.30.1"
+    }
   }
 }
