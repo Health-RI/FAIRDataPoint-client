@@ -18,7 +18,7 @@ RUN scripts/build_info.sh
 
 ###### DISTRIBUTION STAGE ######
 
-FROM nginx:alpine AS dist-stage
+FROM nginx:1.30.0-alpine3.23-slim AS dist-stage
 
 # sass (used in start.sh)
 RUN apk add --no-cache libsass sassc && rm -f /tmp/* /etc/apk/cache/*
