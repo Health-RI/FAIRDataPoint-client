@@ -734,22 +734,19 @@ export default {
     },
 
     childValidation(index) {
-      return _.get(this.v$, `resourceDefinition.children.$each.$iter.${index}`)
+      return this.v$.resourceDefinition.children[index]
     },
 
     childMetadataValidation(childIndex, metaIndex) {
-      return _.get(
-        this.v$,
-        `resourceDefinition.children.$each.$iter.${childIndex}.listView.metadata.$each.$iter.${metaIndex}`,
-      )
+      return this.v$.resourceDefinition.children[childIndex]?.listView?.metadata[metaIndex]
     },
 
     metadataSchemaValidation(index) {
-      return _.get(this.v$, `resourceDefinition.metadataSchemaUuids.$each.$iter.${index}`)
+      return this.v$.resourceDefinition.metadataSchemaUuids[index]
     },
 
     externalLinkValidation(index) {
-      return _.get(this.v$, `resourceDefinition.externalLinks.$each.$iter.${index}`)
+      return this.v$.resourceDefinition.externalLinks[index]
     },
 
     setName(name) {
