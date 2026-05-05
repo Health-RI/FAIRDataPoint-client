@@ -162,8 +162,7 @@
                       </option>
                     </select>
                     <p
-                      v-if="extendsValidation(index)
-                        && !extendsValidation(index).uuid.required"
+                      v-if="extendsValidation(index)?.uuid?.required === false"
                       class="invalid-feedback"
                     >
                       Field cannot be empty
@@ -449,7 +448,7 @@ export default {
     },
 
     extendsValidation(index) {
-      return _.get(this.v$, `schema.extendsSchemaUuids.$each.$iter.${index}`)
+      return this.v$.schema.extendsSchemaUuids[index]
     },
 
     setViewPreview(viewPreview) {
