@@ -70,24 +70,24 @@
             {{ option.label }}
           </label>
         </div>
-        <template v-for="option in field.options.filter(o => o.id === model[field.id])">
+        <template
+          v-for="option in field.options.filter(o => o.id === model[field.id])"
+          :key="option.id"
+        >
           <input
             :id="option.id"
-            :key="`input-${option.id}`"
             v-model.trim="v$.model[option.id].$model"
             :name="option.id"
             :placeholder="option.label"
           >
           <p
             v-if="v$.model[option.id].required === false"
-            :key="`err-req-${option.id}`"
             class="invalid-feedback"
           >
             Field is required
           </p>
           <p
             v-if="v$.model[option.id].url === false"
-            :key="`err-url-${option.id}`"
             class="invalid-feedback"
           >
             This is not a valid IRI

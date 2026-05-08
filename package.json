@@ -46,9 +46,10 @@
     "@vue/eslint-config-typescript": "^11.0.0",
     "autoprefixer": "^10.4.20",
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.10.0",
+    "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "3.5.5",
-    "eslint-plugin-vue": "^9.2.0",
+    "eslint-plugin-vue": "^10.9.1",
+    "vue-eslint-parser": "^10.3.0",
     "postcss": "^8.4.31",
     "querystring-es3": "^0.2.1",
     "sass": "^1.99.0",
@@ -62,6 +63,12 @@
     "vis-network": { "uuid": "^9.0.0" },
     "vis-util": {
       "moment": "2.30.1"
+    },
+    "@vue/eslint-config-airbnb": {
+      "eslint-plugin-vue": "^10.9.1"
+    },
+    "@vue/eslint-config-typescript": {
+      "eslint-plugin-vue": "^10.9.1"
     }
   }
 }
