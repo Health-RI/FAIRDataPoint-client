@@ -134,7 +134,7 @@
           >
             <a
               class="nav-link"
-              :class="{ active: activeItemList == itemList }"
+              :class="{ active: activeItemList === itemList }"
               @click.prevent="setActiveItemList(itemList)"
             >
               {{ itemList.title }}
