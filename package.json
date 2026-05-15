@@ -48,7 +48,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^8.10.0",
     "eslint-import-resolver-typescript": "4.4.4",
-    "eslint-plugin-vue": "^9.2.0",
+    "eslint-plugin-vue": "^10.9.1",
     "postcss": "^8.4.31",
     "querystring-es3": "^0.2.1",
     "sass": "^1.99.0",
