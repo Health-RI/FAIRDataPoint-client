@@ -142,7 +142,7 @@ export abstract class SHACLParser<F extends Field<S>, S extends Shape<F>> {
     return this.store
       .match(null, RDF('type'), SHACL('NodeShape'), null)
       .map((s) => this.loadShapeForm(s.subject))
-      .reduce(this.mergeShapes)
+      .reduce((shape1: S, shape2: S) => this.mergeShapes(shape1, shape2), this.createEmptyShape())
   }
 
   public parseAllAndGroup(): Group<F>[] {
@@ -150,7 +150,7 @@ export abstract class SHACLParser<F extends Field<S>, S extends Shape<F>> {
       .match(null, RDF('type'), SHACL('NodeShape'), null)
       .filter((s) => this.store.match(null, null, s.subject).length === 0)
       .map((s) => this.loadShapeForm(s.subject))
-      .reduce(this.mergeShapes)
+      .reduce((shape1: S, shape2: S) => this.mergeShapes(shape1, shape2), this.createEmptyShape())
 
     return this.group(shape)
   }
