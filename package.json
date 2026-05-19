@@ -27,8 +27,10 @@
     "process": "^0.11.10",
     "rdflib": "^2.3.5",
     "semver": "^7.5.2",
-    "vis-data": "^6.4.1",
-    "vis-network": "^7.3.5",
+    "uuid": "^11.1.1",
+    "vis-data": "^8.0.4",
+    "vis-network": "^10.1.0",
+    "vis-util": "^6.0.0",
     "vue": "^3.5.34",
     "vue-prism-editor": "2.0.0-alpha.2",
     "vue-router": "^5.0.6",
@@ -58,10 +60,12 @@
     "vite": "^8.0.11"
   },
   "overrides": {
-    "vis-data": { "uuid": "^9.0.0" },
-    "vis-network": { "uuid": "^9.0.0" },
-    "vis-util": {
-      "moment": "2.30.1"
-    }
+    "git-up": "^8.1.0",
+    "git-url-parse": "^16.1.0",
+    "got": "^11.8.5",
+    "gry": "^6.0.0",
+    "parse-url": "^8.1.0",
+    "tmp": "^0.2.4",
+    "uuid": "^11.1.1"
   }
 }
