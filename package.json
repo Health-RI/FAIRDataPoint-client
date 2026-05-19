@@ -27,8 +27,10 @@
     "process": "^0.11.10",
     "rdflib": "^2.3.5",
     "semver": "^7.5.2",
+    "uuid": "^9.0.0",
     "vis-data": "^8.0.4",
-    "vis-network": "^7.3.5",
+    "vis-network": "^10.1.0",
+    "vis-util": "^6.0.0",
     "vue": "^3.5.34",
     "vue-prism-editor": "2.0.0-alpha.2",
     "vue-router": "^5.0.6",
@@ -56,12 +58,5 @@
     "typescript": "^4.6.2",
     "url": "^0.11.0",
     "vite": "^8.0.11"
-  },
-  "overrides": {
-    "vis-data": { "uuid": "^9.0.0" },
-    "vis-network": { "uuid": "^9.0.0" },
-    "vis-util": {
-      "moment": "2.30.1"
-    }
   }
 }
