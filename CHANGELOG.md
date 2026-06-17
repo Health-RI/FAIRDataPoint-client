@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.13] - 2026-06-17
+
+### Changed
+- build(deps): bump form-data from 4.0.5 to 4.0.6 (#88) by @dependabot[bot] in b61053e
+
+
+
 ## [v1.0.6] - 2026-05-05
 
 ### Changed
