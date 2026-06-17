@@ -45,6 +45,8 @@ jobs:
       - name: Fetch Latest Tag and Increment Version
         id: tagging
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           LATEST_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
           if [[ -z "$LATEST_TAG" ]]; then
@@ -64,8 +66,8 @@ jobs:
           esac
 
           NEW_TAG="v$MAJOR.$MINOR.$PATCH"
-          while git rev-parse --verify --quiet "refs/tags/$NEW_TAG" >/dev/null; do
-            echo "Tag $NEW_TAG already exists, bumping patch version"
+          while git rev-parse --verify --quiet "refs/tags/$NEW_TAG" >/dev/null || gh release view "$NEW_TAG" >/dev/null 2>&1; do
+            echo "Tag or release $NEW_TAG already exists, bumping patch version"
             PATCH=$((PATCH + 1))
             NEW_TAG="v$MAJOR.$MINOR.$PATCH"
           done
@@ -94,11 +96,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           LATEST_TAG="${{ needs.versioning.outputs.new_tag }}"
-          PREVIOUS_TAG=$(git tag --sort=-creatordate | sed -n '2p')
+          PREVIOUS_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sed -n '2p')
 
           echo "Creating GitHub release for $LATEST_TAG from previous release $PREVIOUS_TAG"
 
-          if [[ -n "$PREVIOUS_TAG" ]]; then
+          if gh release view "$LATEST_TAG" >/dev/null 2>&1; then
+            echo "GitHub release for $LATEST_TAG already exists; skipping creation."
+          elif [[ -n "$PREVIOUS_TAG" ]]; then
             gh release create "$LATEST_TAG" \
               --title "Release $LATEST_TAG" \
               --generate-notes \
