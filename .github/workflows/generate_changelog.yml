@@ -35,7 +35,7 @@ jobs:
 
           CHANGELOG_FILE="CHANGELOG.md"
           LATEST_TAG="${{ inputs.tag }}"
-          PREVIOUS_TAG="$(git tag --sort=-creatordate | sed -n '2p')"
+          PREVIOUS_TAG="$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sed -n '2p')"
           CHANGELOG_BRANCH="chore/changelog-${LATEST_TAG#v}"
 
           if [[ -n "$PREVIOUS_TAG" ]]; then

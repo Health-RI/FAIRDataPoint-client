@@ -46,7 +46,7 @@ jobs:
         id: tagging
         shell: bash
         run: |
-          LATEST_TAG=$(git tag --sort=-creatordate | head -n 1)
+          LATEST_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
           if [[ -z "$LATEST_TAG" ]]; then
             LATEST_TAG="v0.0.0"
           fi
@@ -64,8 +64,14 @@ jobs:
           esac
 
           NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+          while git rev-parse --verify --quiet "refs/tags/$NEW_TAG" >/dev/null; do
+            echo "Tag $NEW_TAG already exists, bumping patch version"
+            PATCH=$((PATCH + 1))
+            NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+          done
+
           echo "Pushing this tag: $NEW_TAG"
-          
+
           git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
           git push origin "$NEW_TAG"
 
