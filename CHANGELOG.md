@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Release notes since `v1.0.6`
+
+| Area | Package updates | Impact |
+| --- | --- | --- |
+| UI components | `bootstrap-vue-next` `0.42.0 -> 0.45.5` | Bootstrap component compatibility and rendering stability. |
+| Vue runtime | `vue` `3.5.34 -> 3.5.35`, `vue-router` `4.6.4 -> 5.0.6`, `@fortawesome/vue-fontawesome` `3.1.3 -> 3.2.0` | Framework and router patch updates, plus icon component compatibility. |
+| Icons | `@fortawesome/free-regular-svg-icons`, `@fortawesome/free-solid-svg-icons` | Updated icon set used by the UI. |
+| RDF and data handling | `rdflib` `2.3.8 -> 2.3.9`, `vis-data` `6.4.1 -> 8.0.4` | RDF parsing and graph/data handling updates. |
+| Tooling | `vite` `8.0.13/8.0.14 -> 8.0.16`, `core-js` `3.47.0 -> 3.49.0`, `semver` `7.8.0 -> 7.8.1`, `tmp` `0.2.5 -> 0.2.7`, `form-data` `4.0.5 -> 4.0.6` | Build/runtime and indirect dependency stability and security updates. |
+
+### Release process fixes since `v1.0.6`
+
+- `fix: make release tag selection stable` prevented the release workflow from picking the wrong tag.
+- `fix: skip existing release versions` prevented duplicate release creation for already published versions.
+- The Prism white-screen/startup crash in the current branch is fixed by code in `PrismEditor`, not by an npm package update.
+
 ## [v1.0.6] - 2026-05-05
 
 ### Changed
