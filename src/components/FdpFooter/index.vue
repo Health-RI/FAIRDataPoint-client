@@ -56,8 +56,15 @@ export default defineComponent({
   },
   methods: {
     async fetchData(): Promise<void> {
-      const response = await api.info.getInfo()
-      this.info = response.data
+      try {
+        const response = await api.info.getInfo()
+        this.info = {
+          version: response.data?.version || '',
+          builtAt: response.data?.builtAt || '',
+        }
+      } catch (error) {
+        console.error('Unable to load About dialog info:', error)
+      }
     },
   },
 })
