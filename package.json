@@ -57,7 +57,7 @@
     "sass-loader": "^12.6.0",
     "typescript": "^4.6.2",
     "url": "^0.11.0",
-    "vite": "^8.0.16"
+    "vite": "^8.0.14"
   },
   "overrides": {
     "git-up": "^8.1.0",
