@@ -1,13 +1,14 @@
 import PrismJs from 'prismjs'
 
-function registerTurtle(prism: any): void {
-  const { languages } = prism
+// PrismJS component files (prism-turtle.js, prism-sparql.js) reference a bare
+// global `Prism` variable. When bundled by Vite they would produce a
+// ReferenceError because no such global exists in module scope. We therefore
+// register the languages programmatically via the imported Prism instance.
 
-  if (languages.turtle) {
-    return
-  }
+function registerTurtle(prism: typeof PrismJs): void {
+  if (prism.languages['turtle']) return
 
-  languages.turtle = {
+  prism.languages['turtle'] = {
     comment: {
       pattern: /#.*/,
       greedy: true,
@@ -25,7 +26,7 @@ function registerTurtle(prism: any): void {
       greedy: true,
     },
     url: {
-      // Prism's Turtle grammar needs the ASCII control-character range here.
+      // ASCII control-character range required by the Turtle spec.
       // eslint-disable-next-line no-control-regex
       pattern: /<(?:[^\x00-\x20<>"{}|^`\\]|\\(?:u[\da-fA-F]{4}|U[\da-fA-F]{8}))*>/,
       greedy: true,
@@ -63,19 +64,15 @@ function registerTurtle(prism: any): void {
     },
   }
 
-  languages.trig = languages.turtle
+  prism.languages['trig'] = prism.languages['turtle']
 }
 
-function registerSparql(prism: any): void {
-  const { languages } = prism
-
-  if (languages.sparql) {
-    return
-  }
+function registerSparql(prism: typeof PrismJs): void {
+  if (prism.languages['sparql']) return
 
   registerTurtle(prism)
 
-  languages.sparql = languages.extend('turtle', {
+  prism.languages['sparql'] = prism.languages.extend('turtle', {
     boolean: /\b(?:false|true)\b/i,
     variable: {
       pattern: /[?$]\w+/,
@@ -83,7 +80,7 @@ function registerSparql(prism: any): void {
     },
   })
 
-  languages.insertBefore('sparql', 'punctuation', {
+  prism.languages.insertBefore('sparql', 'punctuation', {
     keyword: [
       /\b(?:A|ADD|ALL|AS|ASC|ASK|BNODE|BY|CLEAR|CONSTRUCT|COPY|CREATE|DATA|DEFAULT|DELETE|DESC|DESCRIBE|DISTINCT|DROP|EXISTS|FILTER|FROM|GROUP|HAVING|INSERT|INTO|LIMIT|LOAD|MINUS|MOVE|NAMED|NOT|NOW|OFFSET|OPTIONAL|ORDER|RAND|REDUCED|SELECT|SEPARATOR|SERVICE|SILENT|STRUUID|UNION|USING|UUID|VALUES|WHERE)\b/i,
       /\b(?:ABS|AVG|BIND|BOUND|CEIL|COALESCE|CONCAT|CONTAINS|COUNT|DATATYPE|DAY|ENCODE_FOR_URI|FLOOR|GROUP_CONCAT|HOURS|IF|IRI|isBLANK|isIRI|isLITERAL|isNUMERIC|isURI|LANG|LANGMATCHES|LCASE|MAX|MD5|MIN|MINUTES|MONTH|REGEX|REPLACE|ROUND|sameTerm|SAMPLE|SECONDS|SHA1|SHA256|SHA384|SHA512|STR|STRAFTER|STRBEFORE|STRDT|STRENDS|STRLANG|STRLEN|STRSTARTS|SUBSTR|SUM|TIMEZONE|TZ|UCASE|URI|YEAR)\b(?=\s*\()/i,
@@ -91,7 +88,7 @@ function registerSparql(prism: any): void {
     ],
   })
 
-  languages.rq = languages.sparql
+  prism.languages['rq'] = prism.languages['sparql']
 }
 
 export function registerPrismLanguages(): void {
