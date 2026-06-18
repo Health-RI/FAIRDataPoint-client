@@ -8,9 +8,7 @@ import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'prismjs/themes/prism.css'
 import 'vue-prism-editor/dist/prismeditor.min.css'
 import 'vue-select/dist/vue-select.css'
-import 'prismjs'
-import 'prismjs/components/prism-turtle'
-import 'prismjs/components/prism-sparql'
+import Prism from 'prismjs'
 import { createEntityConfigs } from '@/entity/entityConfigs'
 import type { EntitySpec } from '@/entity/EntityConfig'
 import App from './App.vue'
@@ -22,6 +20,18 @@ import { registerFontAwesome } from './font-awesome'
 console.log('🚀 FDP Client Starting...')
 
 let entitySpecs: EntitySpec[] = []
+
+async function loadPrismLanguages(): Promise<void> {
+  try {
+    (globalThis as any).Prism = Prism
+    await Promise.all([
+      import('prismjs/components/prism-turtle'),
+      import('prismjs/components/prism-sparql'),
+    ])
+  } catch (error) {
+    console.warn('Failed to load Prism languages dynamically.', error)
+  }
+}
 
 api.configs.getBootstrap()
   .then((response: any) => {
@@ -50,7 +60,9 @@ api.configs.getBootstrap()
     })
     // Continue with empty specs to allow error message to be shown in UI
   })
-  .finally(() => {
+  .finally(async () => {
+    await loadPrismLanguages()
+
     const entityConfigs = createEntityConfigs(entitySpecs)
     const store = createStore(entityConfigs)
     const router = createRouter(store)
