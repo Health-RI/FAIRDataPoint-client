@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `fix: make release tag selection stable` prevented the release workflow from picking the wrong tag.
 - `fix: skip existing release versions` prevented duplicate release creation for already published versions.
-- The Prism white-screen/startup crash is avoided by loading Prism language modules at runtime after `globalThis.Prism` is initialized, which keeps the patched Vite build workable.
+- The Prism white-screen/startup crash is avoided by registering the Turtle and SPARQL grammars locally in the app, which keeps the patched Vite build workable.
 
 ## [v1.0.6] - 2026-05-05
 
