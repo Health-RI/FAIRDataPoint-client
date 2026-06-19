@@ -2,9 +2,33 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+const prismGlobalComponents = new Set([
+  'prism-turtle.js',
+  'prism-sparql.js',
+])
+
+function prismComponentGlobalPlugin() {
+  return {
+    name: 'prism-component-global',
+    transform(code: string, id: string) {
+      const normalizedId = id.replaceAll('\\', '/')
+
+      if (!normalizedId.includes('/node_modules/prismjs/components/')) {
+        return undefined
+      }
+
+      if (!prismGlobalComponents.has(path.basename(normalizedId))) {
+        return undefined
+      }
+
+      return `import Prism from 'prismjs'\n${code}`
+    },
+  }
+}
+
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/app/' : '/',
-  plugins: [vue()],
+  plugins: [prismComponentGlobalPlugin(), vue()],
   define: {
     global: 'globalThis',
     'process.env': {},
