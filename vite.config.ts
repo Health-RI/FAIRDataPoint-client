@@ -7,9 +7,9 @@ const prismGlobalComponents = new Set([
   'prism-sparql.js',
 ])
 
-function prismComponentGlobalPlugin() {
+function prismComponentImportPlugin() {
   return {
-    name: 'prism-component-global',
+    name: 'prism-component-import',
     transform(code: string, id: string) {
       const normalizedId = id.replaceAll('\\', '/')
 
@@ -21,6 +21,9 @@ function prismComponentGlobalPlugin() {
         return undefined
       }
 
+      // Prism language components expect a free global `Prism` script variable.
+      // Make it explicit for Vite/Rolldown module builds. Upstream issue:
+      // https://github.com/PrismJS/prism/issues/4088
       return `import Prism from 'prismjs'\n${code}`
     },
   }
@@ -28,7 +31,7 @@ function prismComponentGlobalPlugin() {
 
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/app/' : '/',
-  plugins: [prismComponentGlobalPlugin(), vue()],
+  plugins: [prismComponentImportPlugin(), vue()],
   define: {
     global: 'globalThis',
     'process.env': {},

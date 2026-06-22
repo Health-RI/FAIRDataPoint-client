@@ -6,11 +6,11 @@ import vSelect from 'vue-select'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'prismjs/themes/prism.css'
+import '@/prism-languages'
 import 'vue-prism-editor/dist/prismeditor.min.css'
 import 'vue-select/dist/vue-select.css'
 import { createEntityConfigs } from '@/entity/entityConfigs'
 import type { EntitySpec } from '@/entity/EntityConfig'
-import { registerPrismLanguages } from '@/prism-languages'
 import App from './App.vue'
 import { createRouter } from './router'
 import { createStore } from './store'
@@ -52,8 +52,6 @@ api.configs.getBootstrap()
     const entityConfigs = createEntityConfigs(entitySpecs)
     const store = createStore(entityConfigs)
     const router = createRouter(store)
-
-    registerPrismLanguages()
 
     const app = createApp(App)
 
