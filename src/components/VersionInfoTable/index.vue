@@ -11,7 +11,7 @@
       <tbody>
         <tr>
           <th>Version</th>
-          <td><code>{{ safeVersion.slice(0, 36) }}</code></td>
+          <td><code>{{ version.slice(0, 36) }}</code></td>
         </tr>
         <tr>
           <th>Built at</th>
@@ -28,15 +28,12 @@ import moment from 'moment'
 export default defineComponent({
   props: {
     title: { type: String, required: true },
-    version: { type: String, default: '' },
-    builtAt: { type: String, default: '' },
+    version: { type: String, required: true },
+    builtAt: { type: String, required: true },
   },
   computed: {
-    safeVersion(): string {
-      return this.version || ''
-    },
     builtAtFormatted() {
-      return this.builtAt ? moment(this.builtAt).format('D. M. YYYY, HH:mm') : 'Unknown'
+      return moment(this.builtAt).format('D. M. YYYY, HH:mm')
     },
   },
 })
