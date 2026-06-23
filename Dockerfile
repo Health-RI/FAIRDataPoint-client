@@ -5,8 +5,8 @@ FROM node:20-alpine AS build-stage
 WORKDIR /app
 
 # install-layer
-COPY package*.json ./
-RUN npm install
+COPY package.json ./
+RUN npm install --include=optional
 
 # build-layer
 COPY . .
