@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.24",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vue/compiler-sfc": "^3.4.31",
     "@vue/eslint-config-airbnb": "^8.0.0",
