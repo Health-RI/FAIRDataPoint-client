@@ -2,9 +2,36 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+const prismGlobalComponents = new Set([
+  'prism-turtle.js',
+  'prism-sparql.js',
+])
+
+function prismComponentImportPlugin() {
+  return {
+    name: 'prism-component-import',
+    transform(code: string, id: string) {
+      const normalizedId = id.replaceAll('\\', '/')
+
+      if (!normalizedId.includes('/node_modules/prismjs/components/')) {
+        return undefined
+      }
+
+      if (!prismGlobalComponents.has(path.basename(normalizedId))) {
+        return undefined
+      }
+
+      // Prism language components expect a free global `Prism` script variable.
+      // Make it explicit for Vite/Rolldown module builds. Upstream issue:
+      // https://github.com/PrismJS/prism/issues/4088
+      return `import Prism from 'prismjs'\n${code}`
+    },
+  }
+}
+
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/app/' : '/',
-  plugins: [vue()],
+  plugins: [prismComponentImportPlugin(), vue()],
   define: {
     global: 'globalThis',
     'process.env': {},
