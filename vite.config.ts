@@ -58,7 +58,10 @@ export default defineConfig(({ mode }) => ({
     include: ['buffer', 'process'],
     // Keep esbuild from pre-bundling these Prism components so they flow through
     // the prismComponentImportPlugin transform above in the dev server too.
-    exclude: ['prismjs/components/prism-turtle', 'prismjs/components/prism-sparql'],
+    // Derive the excluded component paths from prismGlobalComponents so the lists stay in sync.
+    exclude: Array.from(prismGlobalComponents).map(
+      (component) => `prismjs/components/prism-${component}`,
+    ),
   },
   build: {
     chunkSizeWarningLimit: 600,
