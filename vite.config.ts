@@ -7,6 +7,14 @@ const prismGlobalComponents = new Set([
   'prism-sparql.js',
 ])
 
+// Prism language components (prism-turtle, prism-sparql) are plain scripts that
+// reference a free global `Prism` at evaluation time. In a bundle their body is
+// emitted at the top level of the chunk and runs before any `globalThis.Prism`
+// is set, so a bare global reference throws "Can't find variable: Prism".
+// Prepending `import Prism from 'prismjs'` turns that free reference into a real
+// module binding and forces the Prism core to evaluate first. Works in both the
+// dev server and the production build (see optimizeDeps.exclude below, which
+// keeps esbuild from pre-bundling these files past this transform in dev).
 function prismComponentImportPlugin() {
   return {
     name: 'prism-component-import',
@@ -17,13 +25,12 @@ function prismComponentImportPlugin() {
         return undefined
       }
 
-      if (!prismGlobalComponents.has(path.basename(normalizedId))) {
+      // Strip any Vite query suffix (e.g. `?v=hash`, `?import`) before matching.
+      const basename = path.basename(normalizedId.split('?')[0])
+      if (!prismGlobalComponents.has(basename)) {
         return undefined
       }
 
-      // Prism language components expect a free global `Prism` script variable.
-      // Make it explicit for Vite/Rolldown module builds. Upstream issue:
-      // https://github.com/PrismJS/prism/issues/4088
       return `import Prism from 'prismjs'\n${code}`
     },
   }
@@ -49,6 +56,9 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     include: ['buffer', 'process'],
+    // Keep esbuild from pre-bundling these Prism components so they flow through
+    // the prismComponentImportPlugin transform above in the dev server too.
+    exclude: ['prismjs/components/prism-turtle', 'prismjs/components/prism-sparql'],
   },
   build: {
     chunkSizeWarningLimit: 600,

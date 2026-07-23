@@ -138,7 +138,7 @@
                       :data-cy="`denyLink.${index}.remove`"
                       @click.prevent="removeDenyLink(index)"
                     >
-                      <fa :icon="['fas', 'times']" />
+                      <fa :icon="['fas', 'xmark']" />
                     </a>
                   </div>
                 </li>

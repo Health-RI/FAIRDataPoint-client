@@ -51,7 +51,7 @@
                 class="text-danger ms-3 p-1"
                 @click="removeValue(field, i)"
               >
-                <fa :icon="['fas', 'times']" />
+                <fa :icon="['fas', 'xmark']" />
               </a>
             </div>
           </component>

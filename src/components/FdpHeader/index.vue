@@ -39,7 +39,7 @@
                 FAIR Data Point
               </b-dropdown-header>
               <b-dropdown-item @click="$router.push('/users')">
-                <fa :icon="['fas', 'user-friends']" />
+                <fa :icon="['fas', 'user-group']" />
                 Users
               </b-dropdown-item>
               <b-dropdown-item @click="$router.push('/resource-definitions')">
@@ -51,7 +51,7 @@
                 Metadata schemas
               </b-dropdown-item>
               <b-dropdown-item @click="$router.push('/settings')">
-                <fa :icon="['fas', 'cogs']" />
+                <fa :icon="['fas', 'gears']" />
                 Settings
               </b-dropdown-item>
               <b-dropdown-item @click="$router.push('/reset-to-defaults')">
@@ -65,11 +65,11 @@
                 FDP Index
               </b-dropdown-header>
               <b-dropdown-item @click="$router.push('/trigger-ping')">
-                <fa :icon="['fas', 'sync-alt']" />
+                <fa :icon="['fas', 'rotate']" />
                 Trigger ping
               </b-dropdown-item>
               <b-dropdown-item @click="$router.push('/index/settings')">
-                <fa :icon="['fas', 'cogs']" />
+                <fa :icon="['fas', 'gears']" />
                 Index Settings
               </b-dropdown-item>
               <b-dropdown-divider />
@@ -81,7 +81,7 @@
               v-if="!isIndex"
               @click="$router.push(`/my-metadata`)"
             >
-              <fa :icon="['fas', 'project-diagram']" />
+              <fa :icon="['fas', 'diagram-project']" />
               My Metadata
             </b-dropdown-item>
             <b-dropdown-item @click="$router.push(`/api-keys`)">
@@ -89,11 +89,11 @@
               API Keys
             </b-dropdown-item>
             <b-dropdown-item @click="$router.push('/users/current')">
-              <fa :icon="['fas', 'user-edit']" />
+              <fa :icon="['fas', 'user-pen']" />
               Edit profile
             </b-dropdown-item>
             <b-dropdown-item @click="logout">
-              <fa :icon="['fas', 'sign-out-alt']" />
+              <fa :icon="['fas', 'right-from-bracket']" />
               Log out
             </b-dropdown-item>
           </b-dropdown>

@@ -110,7 +110,7 @@ export class EntityConfig {
 
       const icon = link.propertyUri.indexOf('download') > -1
         ? ['fas', 'download']
-        : ['fas', 'external-link-alt']
+        : ['fas', 'up-right-from-square']
 
       return [{ label: link.title, icon, url }]
     })

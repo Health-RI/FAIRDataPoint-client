@@ -109,7 +109,7 @@
                       class="text-danger ms-3 p-1"
                       @click.prevent="removeMetadataMetric(index)"
                     >
-                      <fa :icon="['fas', 'times']" />
+                      <fa :icon="['fas', 'xmark']" />
                     </a>
                   </div>
                 </li>
@@ -189,7 +189,7 @@
                       class="text-danger ms-3 p-1"
                       @click.prevent="removePingEndpoint(index)"
                     >
-                      <fa :icon="['fas', 'times']" />
+                      <fa :icon="['fas', 'xmark']" />
                     </a>
                   </div>
                 </li>
@@ -311,7 +311,7 @@
                       class="text-danger ms-3 p-1"
                       @click.prevent="removeSource(index)"
                     >
-                      <fa :icon="['fas', 'times']" />
+                      <fa :icon="['fas', 'xmark']" />
                     </a>
                   </div>
                 </li>
@@ -453,7 +453,7 @@
                                 class="text-danger ms-3 p-1"
                                 @click.prevent="removeFilterValue(index, valueIndex)"
                               >
-                                <fa :icon="['fas', 'times']" />
+                                <fa :icon="['fas', 'xmark']" />
                               </a>
                             </div>
                           </li>
@@ -472,7 +472,7 @@
                       class="text-danger ms-3 p-1"
                       @click.prevent="removeFilter(index)"
                     >
-                      <fa :icon="['fas', 'times']" />
+                      <fa :icon="['fas', 'xmark']" />
                     </a>
                   </div>
                 </li>
