@@ -10,7 +10,7 @@
           class="btn btn-link"
           @click.prevent="expandAll"
         >
-          <fa :icon="['fas', 'angle-double-down']" />
+          <fa :icon="['fas', 'angles-down']" />
           Expand all
         </a>
         <a
@@ -18,7 +18,7 @@
           class="btn btn-link"
           @click.prevent="collapseAll"
         >
-          <fa :icon="['fas', 'angle-double-up']" />
+          <fa :icon="['fas', 'angles-up']" />
           Collapse all
         </a>
       </template>

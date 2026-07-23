@@ -9,7 +9,7 @@
         class="clear"
         @click="clearValue()"
       >
-        <fa :icon="['fas', 'times']" />
+        <fa :icon="['fas', 'xmark']" />
       </a>
     </div>
     <div v-else>

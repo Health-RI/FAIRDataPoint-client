@@ -42,12 +42,12 @@
                 no-caret
               >
                 <template #button-content>
-                  <fa :icon="['fas', 'ellipsis-v']" />
+                  <fa :icon="['fas', 'ellipsis-vertical']" />
                 </template>
                 <b-dropdown-item
                   @click="$router.push(`/users/${user.uuid}`)"
                 >
-                  <fa :icon="['fas', 'user-edit']" />
+                  <fa :icon="['fas', 'user-pen']" />
                   Edit profile
                 </b-dropdown-item>
                 <b-dropdown-divider />
@@ -55,7 +55,7 @@
                   class="dropdown-item-danger"
                   @click.prevent="deleteUser(user)"
                 >
-                  <fa :icon="['far', 'trash-alt']" />
+                  <fa :icon="['far', 'trash-can']" />
                   Remove
                 </b-dropdown-item>
               </b-dropdown>

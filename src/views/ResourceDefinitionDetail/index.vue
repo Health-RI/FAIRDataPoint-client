@@ -178,7 +178,7 @@
                     :data-cy="`metadataSchemaUuids.${index}.remove`"
                     @click.prevent="removeMetadataSchemaUuid(index)"
                   >
-                    <fa :icon="['fas', 'times']" />
+                    <fa :icon="['fas', 'xmark']" />
                   </a>
                 </div>
               </li>
@@ -353,7 +353,7 @@
                               :data-cy="`child.${index}.metadata.${indexm}.remove`"
                               @click.prevent="removeMetadata(index, indexm)"
                             >
-                              <fa :icon="['fas', 'times']" />
+                              <fa :icon="['fas', 'xmark']" />
                             </a>
                           </div>
                         </li>
@@ -373,7 +373,7 @@
                     :data-cy="`child.${index}.remove`"
                     @click.prevent="removeChild(index)"
                   >
-                    <fa :icon="['fas', 'times']" />
+                    <fa :icon="['fas', 'xmark']" />
                   </a>
                 </div>
               </li>
@@ -441,7 +441,7 @@
                     :data-cy="`externalLink.${index}.remove`"
                     @click.prevent="removeExternalLink(index)"
                   >
-                    <fa :icon="['fas', 'times']" />
+                    <fa :icon="['fas', 'xmark']" />
                   </a>
                 </div>
               </li>

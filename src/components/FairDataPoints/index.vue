@@ -125,7 +125,7 @@
                 href=""
                 @click.prevent="syncFdp(fdp)"
               >
-                <fa :icon="['fas', 'sync-alt']" />
+                <fa :icon="['fas', 'rotate']" />
               </a>
               <a
                 class="color-danger"
@@ -134,7 +134,7 @@
                 href=""
                 @click.prevent="removeFdp(fdp)"
               >
-                <fa :icon="['far', 'trash-alt']" />
+                <fa :icon="['far', 'trash-can']" />
               </a>
             </td>
           </tr>

@@ -3,7 +3,7 @@
     class="search-field"
     @submit.prevent="submit"
   >
-    <fa :icon="['fas', 'search']" />
+    <fa :icon="['fas', 'magnifying-glass']" />
     <input
       v-model="q"
       type="text"

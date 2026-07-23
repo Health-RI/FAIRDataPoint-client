@@ -28,7 +28,7 @@
                 class="text-danger"
                 @click="deleteApiKey(apiKey)"
               >
-                <fa :icon="['far', 'trash-alt']" />
+                <fa :icon="['far', 'trash-can']" />
                 Remove
               </a>
             </div>

@@ -98,12 +98,12 @@
                 no-caret
               >
                 <template #button-content>
-                  <fa :icon="['fas', 'ellipsis-v']" />
+                  <fa :icon="['fas', 'ellipsis-vertical']" />
                 </template>
                 <b-dropdown-item
                   @click="$router.push(`/schemas/${schema.uuid}`)"
                 >
-                  <fa :icon="['fas', 'edit']" />
+                  <fa :icon="['fas', 'pen-to-square']" />
                   Edit schema
                 </b-dropdown-item>
                 <b-dropdown-divider />
@@ -111,7 +111,7 @@
                   class="dropdown-item-danger"
                   @click.prevent="deleteMetadataSchema(schema)"
                 >
-                  <fa :icon="['far', 'trash-alt']" />
+                  <fa :icon="['far', 'trash-can']" />
                   Remove
                 </b-dropdown-item>
               </b-dropdown>

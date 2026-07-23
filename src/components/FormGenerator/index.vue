@@ -31,7 +31,7 @@
                 class="text-danger ms-3 p-1"
                 @click="model[field.id].splice(index, 1)"
               >
-                <fa :icon="['fas', 'times']" />
+                <fa :icon="['fas', 'xmark']" />
               </a>
             </div>
             <p

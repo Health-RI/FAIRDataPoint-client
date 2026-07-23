@@ -263,7 +263,7 @@
                 >
                   <fa
                     v-if="filterValue.isChecked"
-                    :icon="['far', 'check-square']"
+                    :icon="['far', 'square-check']"
                   />
                   <fa
                     v-else
