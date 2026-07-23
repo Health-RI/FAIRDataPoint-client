@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.16] - 2026-07-23
+
+### Changed
+- Update package-lock.json by @Quinten in 3de6060
+- Revert "Update vite.config.ts" by @Quinten in 53fec86
+- Update vite.config.ts by @Quinten in aa84f74
+- Delete prism-setup.ts by @Quinten in 7b76c05
+- build(deps): bump the npm-security-updates group across 1 directory with 3 updates by @dependabot[bot] in febdb95
+- build(deps): bump axios by @dependabot[bot] in 02d4b79
+- docs: update CHANGELOG.md for v1.0.15 by @github-actions[bot] in 9891a18
+- docs: update CHANGELOG.md for v1.0.14 by @github-actions[bot] in a8f2d80
+
+### Fixed
+- bump fontawesome and change variables, fix prism error in dev by @Quinten in 7612eff
+
+
+
 ## [v1.0.15] - 2026-06-23
 
 ### Changed
