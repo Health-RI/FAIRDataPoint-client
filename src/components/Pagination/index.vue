@@ -14,7 +14,7 @@
           :class="{ disabled: currentPage === 0 }"
           @click.prevent="selectPage(0)"
         >
-          <fa :icon="['fas', 'angle-double-left']" />
+          <fa :icon="['fas', 'angles-left']" />
           First
         </a>
       </li>
@@ -71,7 +71,7 @@
           @click.prevent="selectPage(lastPage)"
         >
           Last
-          <fa :icon="['fas', 'angle-double-right']" />
+          <fa :icon="['fas', 'angles-right']" />
         </a>
       </li>
     </ul>

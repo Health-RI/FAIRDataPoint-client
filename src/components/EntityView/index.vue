@@ -54,7 +54,7 @@
           :to="actionUrl('edit')"
           data-cy="edit"
         >
-          <fa :icon="['fas', 'edit']" />
+          <fa :icon="['fas', 'pen-to-square']" />
           Edit
         </router-link>
         <router-link
@@ -63,7 +63,7 @@
           :to="actionUrl('settings')"
           data-cy="settings"
         >
-          <fa :icon="['fas', 'cog']" />
+          <fa :icon="['fas', 'gear']" />
           Settings
         </router-link>
         <a
@@ -72,7 +72,7 @@
           data-cy="delete"
           @click="deleteEntity"
         >
-          <fa :icon="['far', 'trash-alt']" />
+          <fa :icon="['far', 'trash-can']" />
           Delete
         </a>
       </template>

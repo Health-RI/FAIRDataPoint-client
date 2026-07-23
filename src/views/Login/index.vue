@@ -37,7 +37,7 @@
             spin
           />
           <template v-else>
-            <fa :icon="['fas', 'sign-in-alt']" />
+            <fa :icon="['fas', 'right-to-bracket']" />
             Login
           </template>
         </button>

@@ -173,7 +173,7 @@
                     :data-cy="`extendsSchemaUuids.${index}.remove`"
                     @click.prevent="removeExtends(index)"
                   >
-                    <fa :icon="['fas', 'times']" />
+                    <fa :icon="['fas', 'xmark']" />
                   </a>
                 </div>
               </li>
