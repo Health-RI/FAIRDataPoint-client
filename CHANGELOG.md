@@ -11,6 +11,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Fix release Docker build on Alpine by @Hans-christian in 818baba
+## [v1.0.14] - 2026-06-23
+
+### Changed
+- Migrate ESLint to flat config by @Hans-christian in 6f0588d
+- build(deps): bump undici from 6.25.0 to 6.27.0 by @dependabot[bot] in a53ee6a
+- Document Prism component bundler workaround by @Hans-christian in 8dd4cd5
+- Remove unrelated footer changes by @Hans-christian in bd12002
+- build(deps-dev): bump @vue/eslint-config-typescript by @dependabot[bot] in c108bca
+- build(deps-dev): bump @typescript-eslint/eslint-plugin by @dependabot[bot] in fbe2a21
+- build(deps): bump semver from 7.8.1 to 7.8.5 by @dependabot[bot] in a21088f
+- build(deps-dev): bump typescript from 4.9.5 to 6.0.3 by @dependabot[bot] in 23a247a
+- build(deps): bump actions/checkout from 6 to 7 by @dependabot[bot] in f3f1bcb
+- reuse prism package languages by @Hans-christian in 1b42344
+- chore: limit dependabot version updates by @Hans-christian in 15e1b4c
+- Revert Prism workaround and pin Vite 8.0.14 by @Hans-christian in eb2e379
+- docs: add release notes after v1.0.6 by @Hans-christian in 878b0c1
+- Fix Prism startup crashes by @Hans-christian in 9340e16
+- build(deps-dev): bump js-yaml from 4.1.1 to 4.2.0 by @dependabot[bot] in 62655b7
+
+### Fixed
+- fix: bump undici via override by @Hans-christian in 8b41620
+- fix: use compatible vue eslint config typescript version by @Hans-christian in 13a9241
+- fix: align typescript-eslint parser with plugin by @Hans-christian in f458f46
+- fix Prisma reference error by @Hans-christian in f2092db
+- fix prism startup crash by @Hans-christian in a7ebaaa
+- fix: load prism languages at runtime by @Hans-christian in 5791cc4
 
 
 
