@@ -3,6 +3,7 @@
 
 FROM node:20-alpine AS build-stage
 WORKDIR /app
+RUN apk update && apk upgrade --no-cache
 
 # install-layer
 COPY package.json ./
@@ -18,10 +19,10 @@ RUN scripts/build_info.sh
 
 ###### DISTRIBUTION STAGE ######
 
-FROM nginx:1.30.0-alpine3.23-slim AS dist-stage
+FROM nginx:1.31.2-alpine3.23-slim AS dist-stage
 
 # sass (used in start.sh)
-RUN apk add --no-cache libsass sassc && rm -f /tmp/* /etc/apk/cache/*
+RUN apk update && apk upgrade --no-cache && apk add --no-cache libsass sassc && rm -f /tmp/* /etc/apk/cache/*
 COPY --from=build-stage /app/src/scss src/scss
 COPY --from=build-stage /app/src/components src/components
 COPY --from=build-stage /app/src/views src/views
