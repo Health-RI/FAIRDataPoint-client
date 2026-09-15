@@ -21,7 +21,7 @@
     "buffer": "^6.0.3",
     "core-js": "^3.49.0",
     "lodash": "^4.18.1",
-    "moment": "^2.30.1",
+    "moment": "^2.31.0",
     "parse-link-header": "^2.0.0",
     "prismjs": "^1.21.0",
     "process": "^0.11.10",
