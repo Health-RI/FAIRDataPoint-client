@@ -60,6 +60,9 @@ The nginx container can be configured at runtime using environment variables:
 - `FDP_SCHEME` (optional): `http` or `https` for the proxy (`http` default).
 - `PUBLIC_PATH` (optional): base path if serving under a subpath (e.g. `/app`).
 - `REBUILD_STYLES` (optional): set to any value to force rebuilding SCSS at container start.
+- `FDP_PROXY_CONNECT_TIMEOUT` (optional): nginx `proxy_connect_timeout` for requests to the FDP backend (`60s` default).
+- `FDP_PROXY_SEND_TIMEOUT` (optional): nginx `proxy_send_timeout` for requests to the FDP backend (`60s` default).
+- `FDP_PROXY_READ_TIMEOUT` (optional): nginx `proxy_read_timeout` for requests to the FDP backend (`60s` default). Increase this if slow-loading pages (e.g. `/my-metadata` with a large catalog tree) return a 504.
 
 Example: backend is another container on the same network (`fdp` service):
 
