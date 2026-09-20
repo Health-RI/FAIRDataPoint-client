@@ -46,7 +46,7 @@
     "@vue/compiler-sfc": "^3.4.31",
     "@vue/eslint-config-typescript": "14.9.0",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.39.4",
+    "eslint": "^10.0.0",
     "eslint-import-resolver-typescript": "4.4.5",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-vue": "^10.9.2",
