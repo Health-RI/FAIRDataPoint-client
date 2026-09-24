@@ -52,7 +52,7 @@
     "eslint-plugin-vue": "^10.9.2",
     "eslint-plugin-vuejs-accessibility": "^2.5.0",
     "globals": "^17.7.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.5.23",
     "querystring-es3": "^0.2.1",
     "sass": "^1.99.0",
     "sass-loader": "^12.6.0",
