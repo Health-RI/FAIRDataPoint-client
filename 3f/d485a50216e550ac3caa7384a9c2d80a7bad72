@@ -1,0 +1,19 @@
+package-lock.json
+  s_3639c2678f952d::t_e8bd1220e15df5 4587,4635,4645,4667,4669-4671,6291-6304,6310
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3fd485a50216e550ac3caa7384a9c2d80a7bad72",
+  "prompts": {},
+  "sessions": {
+    "s_3639c2678f952d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bee7120a-d56d-4e6d-9428-b6a3404c34be",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kburger <burger+github@gmail.com>"
+    }
+  }
+}
