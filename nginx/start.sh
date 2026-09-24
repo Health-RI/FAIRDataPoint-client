@@ -50,6 +50,15 @@ esac
 sed -i "s#\$FDP_HOST#"$FDP_HOST"#g" /etc/nginx/conf.d/default.conf
 sed -i "s#\$FDP_SCHEME#"$FDP_SCHEME"#g" /etc/nginx/conf.d/default.conf
 
+# proxy timeouts (optional overrides; default to nginx's own 60s)
+FDP_PROXY_CONNECT_TIMEOUT="${FDP_PROXY_CONNECT_TIMEOUT:-60s}"
+FDP_PROXY_SEND_TIMEOUT="${FDP_PROXY_SEND_TIMEOUT:-60s}"
+FDP_PROXY_READ_TIMEOUT="${FDP_PROXY_READ_TIMEOUT:-60s}"
+
+sed -i "s#\$FDP_PROXY_CONNECT_TIMEOUT#$FDP_PROXY_CONNECT_TIMEOUT#g" /etc/nginx/conf.d/default.conf
+sed -i "s#\$FDP_PROXY_SEND_TIMEOUT#$FDP_PROXY_SEND_TIMEOUT#g" /etc/nginx/conf.d/default.conf
+sed -i "s#\$FDP_PROXY_READ_TIMEOUT#$FDP_PROXY_READ_TIMEOUT#g" /etc/nginx/conf.d/default.conf
+
 # set correct Public Path
 if [ -d /usr/share/nginx/html/assets ]; then
   find /usr/share/nginx/html/assets -name "*.js" -exec sed -i "s#/app/#${REWRITE_PATH}/#g" {} \;
