@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.17] - 2026-09-02
+
+### Changed
+- deps: upgrade nginx by @TimVanMourik in 9dba1fc
+- docs: update CHANGELOG.md for v1.0.16 by @github-actions[bot] in 8f7540e
+
+### Fixed
+- fix: address review feedback on Dockerfile apk cleanup by @Quinten in 9604cd4
+- fix: resolve Snyk-reported dependency and Docker image vulnerabilities by @Quinten in d6299de
+- fix: upgrade eslint-import-resolver-typescript from 4.4.4 to 4.4.5 by @snyk-bot in 0315245
+- fix: upgrade @vue/eslint-config-typescript from 14.8.0 to 14.9.0 by @snyk-bot in c53c2e7
+
+
+
 ## [v1.0.16] - 2026-07-23
 
 ### Changed
