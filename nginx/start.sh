@@ -50,10 +50,9 @@ esac
 sed -i "s#\$FDP_HOST#"$FDP_HOST"#g" /etc/nginx/conf.d/default.conf
 sed -i "s#\$FDP_SCHEME#"$FDP_SCHEME"#g" /etc/nginx/conf.d/default.conf
 
-# proxy timeouts (optional overrides). Read/send default to 180s because slow
+# proxy timeouts (optional overrides). Default to 180s because slow
 # endpoints such as /dashboard (My Metadata tree) can exceed nginx's 60s default.
-# Connect stays at 60s: nginx caps proxy_connect_timeout at ~75s anyway.
-FDP_PROXY_CONNECT_TIMEOUT="${FDP_PROXY_CONNECT_TIMEOUT:-60s}"
+FDP_PROXY_CONNECT_TIMEOUT="${FDP_PROXY_CONNECT_TIMEOUT:-180s}"
 FDP_PROXY_SEND_TIMEOUT="${FDP_PROXY_SEND_TIMEOUT:-180s}"
 FDP_PROXY_READ_TIMEOUT="${FDP_PROXY_READ_TIMEOUT:-180s}"
 
