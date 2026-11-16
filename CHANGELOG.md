@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.19] - 2026-11-16
+
+### Changed
+- build(deps): bump the npm-security-updates group across 1 directory with 4 updates (#157) by @dependabot[bot] in 0473723
+
+
+
 ## [v1.0.18] - 2026-11-16
 
 ### Changed
