@@ -94,7 +94,7 @@
             v-for="link in extraLinks"
             :key="link.url"
             class="btn btn-primary btn-rounded me-3 mb-3"
-            :href="link.url"
+            :href="safeHref(link.url)"
             target="_blank"
             data-cy="external-link"
           >
@@ -108,17 +108,17 @@
         <div class="mt-4">
           <a
             class="btn btn-outline-primary btn-rounded me-2"
-            :href="`${subject}?format=ttl`"
+            :href="safeHref(`${subject}?format=ttl`)"
             target="_blank"
           ><fa :icon="['fas', 'download']" /> ttl</a>
           <a
             class="btn btn-outline-primary btn-rounded me-2"
-            :href="`${subject}?format=rdf`"
+            :href="safeHref(`${subject}?format=rdf`)"
             target="_blank"
           ><fa :icon="['fas', 'download']" /> rdf+xml</a>
           <a
             class="btn btn-outline-primary btn-rounded me-2"
-            :href="`${subject}?format=jsonld`"
+            :href="safeHref(`${subject}?format=jsonld`)"
             target="_blank"
           ><fa :icon="['fas', 'download']" /> json-ld</a>
         </div>
@@ -174,6 +174,7 @@ import EntityBase from '@/components/EntityBase'
 import FairDataPoints from '@/components/FairDataPoints/index.vue'
 import config from '@/config'
 import { DCT } from '@/rdf/namespaces'
+import safeHref from '@/utils/safeHref'
 
 export default defineComponent({
   components: {
@@ -221,6 +222,7 @@ export default defineComponent({
     },
   },
   methods: {
+    safeHref,
     actionEnabled(action: string): boolean {
       return _.includes(this.config.viewActions, action)
     },

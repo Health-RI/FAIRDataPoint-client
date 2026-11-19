@@ -19,7 +19,7 @@
       <a
         v-for="(tag, index) in item.tags"
         :key="index"
-        :href="tag.uri"
+        :href="safeHref(tag.uri)"
         class="item__tags__tag"
         target="_blank"
       >
@@ -48,12 +48,14 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { truncate } from '@/filters'
+import safeHref from '@/utils/safeHref'
 
 export default defineComponent({
   props: {
     item: { type: Object as PropType<any>, required: true },
   },
   methods: {
+    safeHref,
     truncate(value: string) {
       return truncate(value)
     },

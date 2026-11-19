@@ -1,6 +1,6 @@
 <template>
   <a
-    :href="uri"
+    :href="safeHref(uri)"
     target="_blank"
     class="link"
   >
@@ -10,6 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import api from '../../api'
+import safeHref from '../../utils/safeHref'
 
 export default defineComponent({
   props: {
@@ -31,6 +32,9 @@ export default defineComponent({
         // nothing could be fetched, keep default label
       }
     }
+  },
+  methods: {
+    safeHref,
   },
 })
 </script>

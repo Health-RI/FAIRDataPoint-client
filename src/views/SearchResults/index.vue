@@ -305,7 +305,7 @@
               class="item"
             >
               <a
-                :href="item.uri"
+                :href="safeHref(item.uri)"
                 target="_blank"
                 class="item__title"
               >
@@ -324,7 +324,7 @@
                 <a
                   v-for="(type, index) in item.types"
                   :key="index"
-                  :href="type"
+                  :href="safeHref(type)"
                   class="item__tags__tag"
                   target="_blank"
                 >
@@ -344,6 +344,7 @@ import axios from 'axios'
 import _ from 'lodash'
 import api from '@/api'
 import rdfUtils from '@/rdf/utils'
+import safeHref from '@/utils/safeHref'
 import { truncate } from '@/filters'
 import Page from '@/components/Page/index.vue'
 import PrismEditor from '@/components/PrismEditor/index.vue'
@@ -417,6 +418,7 @@ export default defineComponent({
     this.init()
   },
   methods: {
+    safeHref,
     truncate(value: string) {
       return truncate(value)
     },
