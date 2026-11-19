@@ -1,5 +1,6 @@
 import globals from 'globals'
-import pluginImport from 'eslint-plugin-import'
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
+import pluginImportX from 'eslint-plugin-import-x'
 import pluginVue from 'eslint-plugin-vue'
 import pluginVuejsAccessibility from 'eslint-plugin-vuejs-accessibility'
 import {
@@ -23,15 +24,15 @@ export default defineConfigWithVueTs(
       },
     },
     plugins: {
-      import: pluginImport,
+      'import-x': pluginImportX,
       'vuejs-accessibility': pluginVuejsAccessibility,
     },
     settings: {
-      'import/resolver': {
-        typescript: {
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
           project: './tsconfig.json',
-        },
-      },
+        }),
+      ],
     },
     rules: {
       'class-methods-use-this': 'off',
@@ -40,7 +41,7 @@ export default defineConfigWithVueTs(
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'no-unused-vars': 'off',
       semi: ['error', 'never'],
-      'import/extensions': ['error', 'always', {
+      'import-x/extensions': ['error', 'always', {
         js: 'never',
         mjs: 'never',
         jsx: 'never',
@@ -48,7 +49,7 @@ export default defineConfigWithVueTs(
         tsx: 'never',
         vue: 'always',
       }],
-      'import/prefer-default-export': 'off',
+      'import-x/prefer-default-export': 'off',
       'vue/component-name-in-template-casing': ['error', 'kebab-case', {
         registeredComponentsOnly: false,
         ignores: [],

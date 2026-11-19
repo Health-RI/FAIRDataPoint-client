@@ -7,6 +7,77 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.19] - 2026-11-16
+
+### Changed
+- build(deps): bump the npm-security-updates group across 1 directory with 4 updates (#157) by @dependabot[bot] in 0473723
+
+
+
+## [v1.0.18] - 2026-11-16
+
+### Changed
+- build(deps): bump the npm-security-updates group across 1 directory with 3 updates (#149) by @dependabot[bot] in 6309616
+- Load config.js from the app base path (#154) by @Quinten in 48f0771
+- [Snyk] Security upgrade vue from 3.5.40 to 3.5.42 (#148) by @kburger in efed43c
+- Bump undici and refresh lockfile by @Quinten in 9615922
+- Update package-lock.json by @Quinten in f57c4b2
+- Remove stale eslint-plugin-import entries from package-lock.json by @kburger in 3fd485a
+- Upgrade eslint to 10 and replace eslint-plugin-import with eslint-plugin-import-x by @kburger in 94e8dbe
+- Retrigger tests by @kburger in d29fa7f
+- Retrigger tests by @kburger in c5e85f1
+- Retrigger tests by @kburger in e9f290b
+- Retrigger tests by @kburger in 7e3d751
+- Retrigger tests by @kburger in bb496a3
+- Retrigger tests by @kburger in 1f513a9
+- Retrigger tests by @kburger in f7a6ab8
+- build(deps): bump fast-uri by @dependabot[bot] in 810e87f
+- docs: update CHANGELOG.md for v1.0.17 by @github-actions[bot] in 11e21fc
+
+### Fixed
+- fix: upgrade sass from 1.101.7 to 1.104.0 (#139) by @kburger in f54de34
+- fix: upgrade vis-util from 6.0.0 to 6.0.2 (#143) by @kburger in cdea7d0
+- fix: upgrade vis-network from 10.1.0 to 10.1.2 (#142) by @kburger in f114b28
+- fix: upgrade bootstrap-vue-next from 0.45.9 to 0.46.4 (#137) by @kburger in af2a9e4
+- fix: upgrade @vue/compiler-sfc from 3.5.40 to 3.5.42 (#141) by @kburger in 98d82f8
+- fix: upgrade globals from 17.8.0 to 17.12.0 (#138) by @kburger in bc7e70b
+- fix: upgrade @typescript-eslint/parser from 8.66.0 to 8.69.0 (#136) by @kburger in d7cf690
+- fix: upgrade @typescript-eslint/eslint-plugin from 8.65.0 to 8.69.0 (#135) by @kburger in e01f840
+- fix: Dockerfile to reduce vulnerabilities (#152) by @kburger in c7810fe
+- fix: package.json & package-lock.json to reduce vulnerabilities (#153) by @kburger in 7058465
+- fix: package.json & package-lock.json to reduce vulnerabilities (#150) by @kburger in f1c71c1
+- fix(FDP-189): also raise default proxy connect timeout to 180s by @SeanBerrieHRI in d6f8535
+- fix(FDP-189): raise default FDP proxy read/send timeout to 180s by @SeanBerrieHRI in f138c15
+- fix: package.json & package-lock.json to reduce vulnerabilities by @snyk-bot in 838633a
+- Merge branch 'main' into snyk-fix-d902aea43a4ee1eab0c518871a2df397 by @Quinten in edfd388
+- fix: package.json & package-lock.json to reduce vulnerabilities by @snyk-bot in 44d0b2c
+- fix: make FDP proxy timeouts configurable via environment variables by @Quinten in f906fcc
+- fix: package.json & package-lock.json to reduce vulnerabilities by @snyk-bot in 80a489f
+- fix: upgrade @typescript-eslint/parser from 8.65.0 to 8.66.0 by @snyk-bot in 6c440b5
+- fix: upgrade @types/lodash from 4.17.24 to 4.17.25 by @snyk-bot in a34a2cb
+- fix: upgrade vite from 8.1.5 to 8.2.0 by @snyk-bot in ae2f10a
+- fix: upgrade axios from 1.18.1 to 1.19.0 by @snyk-bot in 4175ed1
+- fix: upgrade bootstrap-vue-next from 0.45.8 to 0.45.9 by @snyk-bot in 83f1136
+- fix: upgrade globals from 17.7.0 to 17.8.0 by @snyk-bot in 1c93d97
+- fix: upgrade sass from 1.101.6 to 1.101.7 by @snyk-bot in b2c9b2e
+- fix: package.json & package-lock.json to reduce vulnerabilities by @snyk-bot in af2c0bf
+
+
+
+## [v1.0.17] - 2026-09-02
+
+### Changed
+- deps: upgrade nginx by @TimVanMourik in 9dba1fc
+- docs: update CHANGELOG.md for v1.0.16 by @github-actions[bot] in 8f7540e
+
+### Fixed
+- fix: address review feedback on Dockerfile apk cleanup by @Quinten in 9604cd4
+- fix: resolve Snyk-reported dependency and Docker image vulnerabilities by @Quinten in d6299de
+- fix: upgrade eslint-import-resolver-typescript from 4.4.4 to 4.4.5 by @snyk-bot in 0315245
+- fix: upgrade @vue/eslint-config-typescript from 14.8.0 to 14.9.0 by @snyk-bot in c53c2e7
+
+
+
 ## [v1.0.16] - 2026-07-23
 
 ### Changed
