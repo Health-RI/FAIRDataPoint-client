@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.20] - 2026-11-20
+
+### Changed
+- chore: update changelog for v1.0.19 (#158) by @github-actions[bot] in facd3e9
+
+### Fixed
+- fix: upgrade nginx to 1.31.9 to address HTTP/2 vulnerabilities (#169) by @Tim van Mourik in f672b46
+- fix: reject non-http(s) schemes before binding RDF-derived values to href (#168) by @Tim van Mourik in ab1a4b0
+
+
+
 ## [v1.0.19] - 2026-11-16
 
 ### Changed
