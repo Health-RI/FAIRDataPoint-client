@@ -26,7 +26,7 @@
             <a
               v-for="(link, linkIndex) in data.links"
               :key="linkIndex"
-              :href="link.uri"
+              :href="safeHref(link.uri)"
               target="_blank"
               class="link"
             >
@@ -87,6 +87,7 @@
 import { defineComponent } from 'vue'
 import _ from 'lodash'
 import RdfLink from '@/components/RdfLink/index.vue'
+import safeHref from '@/utils/safeHref'
 
 export default defineComponent({
   components: { RdfLink },
@@ -105,6 +106,7 @@ export default defineComponent({
     },
   },
   methods: {
+    safeHref,
     viewItems(key, items) {
       if (this.showMoreActive(key, items)) {
         return items.slice(0, 3)

@@ -26,7 +26,7 @@
       />
       <div class="item-list__item__content">
         <div class="item-list__item__content__row">
-          <a :href="`${item.uri}`">
+          <a :href="safeHref(item.uri)">
             {{ title(item) }}
           </a>
           <membership-badge :entity="item" />
@@ -45,6 +45,7 @@ import { defineComponent, PropType } from 'vue'
 import _ from 'lodash'
 import Avatar from '../../components/Avatar/index.vue'
 import MembershipBadge from '../../components/MembershipBadge/index.vue'
+import safeHref from '../../utils/safeHref'
 
 type Item = {
   children: Item[]
@@ -61,6 +62,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   methods: {
+    safeHref,
     title(item) {
       return item.state === 'DRAFT' ? `[DRAFT] ${item.title}` : item.title
     },

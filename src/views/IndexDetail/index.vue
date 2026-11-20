@@ -19,7 +19,7 @@
           <div class="entry-header">
             <h2 class="entry-title">
               FDP <a
-                :href="fdp.clientUrl"
+                :href="safeHref(fdp.clientUrl)"
                 target="_blank"
               >{{ fdp.clientUrl }}</a>
             </h2>
@@ -72,7 +72,7 @@
                 <th>Repository URI</th>
                 <td>
                   <a
-                    :href="fdp.clientUrl"
+                    :href="safeHref(fdp.clientUrl)"
                     target="_blank"
                   >{{ fdp.clientUrl }}</a>
                 </td>
@@ -89,7 +89,7 @@
                 <th>Publisher</th>
                 <td>
                   <a
-                    :href="metadataPublisher"
+                    :href="safeHref(metadataPublisher)"
                     target="_blank"
                   >{{ metadataPublisherName }}</a>
                 </td>
@@ -138,6 +138,7 @@ import StatusFlash from '@/components/StatusFlash/index.vue'
 import { stateClass } from '@/utils/fdpIndex'
 import Breadcrumbs from '../../components/Breadcrumbs/index.vue'
 import api from '../../api'
+import safeHref from '../../utils/safeHref'
 
 export default defineComponent({
   components: { Breadcrumbs, Page, StatusFlash },
@@ -184,6 +185,7 @@ export default defineComponent({
     this.init()
   },
   methods: {
+    safeHref,
     badgeClass(state) {
       return stateClass(state)
     },
